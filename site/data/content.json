@@ -1,0 +1,68 @@
+{
+  "event": {
+    "title": "Deep Matters 2026",
+    "theme": "Agents for Science",
+    "date": "2026-11-26",
+    "about": "Deep Matters 2026: Agents for Science is the second edition of the Deep Matters conference series, following Deep Matters: Foundations in 2025. This year we explore how AI agents — systems that plan, use tools, run simulations and experiments, and reason over results — are changing the way science is done. The day brings together researchers from academia, industry and startups.",
+    "registerUrl": "",
+    "registerNote": "Free · Limited places, subject to approval.",
+    "contactEmail": "st225@ic.ac.uk"
+  },
+
+  "venue": {
+    "name": "Institute of Physics",
+    "address": "37 Caledonian Road, London N1 9BU",
+    "city": "London",
+    "directions": "5 minutes' walk from King's Cross St Pancras (Underground, National Rail and Eurostar)."
+  },
+
+  "people": {
+    "sheares-toh": {
+      "name": "Sheares Toh",
+      "affiliation": "Imperial College London"
+    },
+    "samuel-cooper": {
+      "name": "Dr Samuel J. Cooper",
+      "affiliation": "Imperial College London",
+      "photo": "images/people/samuel-cooper.jpg",
+      "website": "https://profiles.imperial.ac.uk/samuel.cooper"
+    }
+  },
+
+  "organizers": ["sheares-toh", "samuel-cooper"],
+
+  "agenda": {
+    "start": "09:30",
+    "talkMinutes": 40,
+    "items": [
+      { "type": "break",   "title": "Doors open · Registration & coffee", "minutes": 30 },
+      { "type": "session", "title": "Welcome & opening remarks", "minutes": 10 },
+      { "type": "talk" },
+      { "type": "talk" },
+      { "type": "talk" },
+      { "type": "break",   "title": "Lunch", "minutes": 60 },
+      { "type": "talk" },
+      { "type": "talk" },
+      { "type": "talk" },
+      { "type": "break",   "title": "Coffee break", "minutes": 30 },
+      { "type": "talk" },
+      { "type": "talk" },
+      { "type": "session", "title": "Closing remarks", "minutes": 10 },
+      { "type": "break",   "title": "Networking" }
+    ]
+  },
+
+  "hosts": [
+    { "name": "Imperial College London", "logo": "images/logos/imperial.png", "height": 32, "url": "https://www.imperial.ac.uk" }
+  ],
+  "sponsors": [
+    { "name": "Henry Royce Institute", "logo": "images/logos/royce.png", "height": 72, "url": "https://www.royce.ac.uk" },
+    { "name": "Polaron", "logo": "images/logos/polaron.png", "url": "https://polaron.ai" }
+  ],
+
+  "faq": [
+    { "q": "Is food provided?", "a": "Yes — lunch and coffee are provided throughout the day." },
+    { "q": "Who should attend?", "a": "Researchers, students and industry practitioners who are building, using or curious about AI agents in science." },
+    { "q": "Is the venue accessible?", "a": "If you have any access requirements, please get in touch and we will be happy to help." }
+  ]
+}

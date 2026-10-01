@@ -1,0 +1,128 @@
+// Renders the page from data/content.json. Edit that file, not this one, to change content.
+
+const esc = (s = "") =>
+  String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+
+const ICONS = {
+  linkedin: '<svg viewBox="0 0 24 24" aria-hidden="true"><path class="fill" d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4v11H3v-11zm6.5 0h3.8v1.5h.06c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.77 2.65 4.77 6.1v5.45h-4v-4.83c0-1.15-.02-2.63-1.6-2.63-1.6 0-1.85 1.25-1.85 2.55v4.91h-3.95v-11z"/></svg>',
+  website: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>',
+  person: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>',
+};
+
+const initials = (name) => {
+  const words = name.replace(/^(dr|prof)\.?\s+/i, "").split(/\s+/);
+  return (words[0][0] + (words.length > 1 ? words[words.length - 1][0] : "")).toUpperCase();
+};
+
+const avatar = (p) =>
+  !p ? `<div class="avatar ghost">${ICONS.person}</div>`
+  : p.photo ? `<img class="avatar" src="${esc(p.photo)}" alt="" loading="lazy" />`
+  : `<div class="avatar" aria-hidden="true">${esc(initials(p.name))}</div>`;
+
+const profileLinks = (p) => {
+  const links = [
+    p.linkedin && `<a href="${esc(p.linkedin)}" target="_blank" rel="noopener" aria-label="${esc(p.name)} on LinkedIn">${ICONS.linkedin}</a>`,
+    p.website && `<a href="${esc(p.website)}" target="_blank" rel="noopener" aria-label="${esc(p.name)}'s website">${ICONS.website}</a>`,
+  ].filter(Boolean);
+  return links.length ? `<div class="links">${links.join("")}</div>` : "";
+};
+
+const personCard = (p) =>
+  p ? `<article class="person">${avatar(p)}<h3>${esc(p.name)}</h3><p>${esc(p.affiliation)}</p>${profileLinks(p)}</article>`
+    : `<article class="person tba">${avatar()}<h3>To be announced</h3></article>`;
+
+// "09:30" + minutes -> "10:10"
+const addMinutes = (hhmm, mins) => {
+  const [h, m] = hhmm.split(":").map(Number);
+  const t = h * 60 + m + mins;
+  return `${String(Math.floor(t / 60)).padStart(2, "0")}:${String(t % 60).padStart(2, "0")}`;
+};
+
+function renderAgenda({ start, talkMinutes, items }, people) {
+  let clock = start;
+  return items.map((item) => {
+    const minutes = item.minutes ?? (item.type === "talk" ? talkMinutes : 0);
+    const end = minutes ? addMinutes(clock, minutes) : null;
+    const time = end ? `${clock} – ${end}` : `From ${clock}`;
+    clock = end || clock;
+
+    if (item.type !== "talk") {
+      const cls = item.type === "break" ? "slot slot-break" : "slot";
+      return `<li class="${cls}"><time>${time}</time><div><h3>${esc(item.title)}</h3></div></li>`;
+    }
+
+    const speakers = (item.speakers || []).map((id) => people[id]).filter(Boolean);
+    const chips = speakers.length
+      ? speakers.map((p) => `<div class="chip">${avatar(p)}<div><strong>${esc(p.name)}</strong><span>${esc(p.affiliation)}</span></div></div>`).join("")
+      : `<div class="chip">${avatar()}<div><span>Speaker to be announced</span></div></div>`;
+    return `<li class="slot${item.title ? "" : " tba"}">
+      <time>${time}</time>
+      <div>
+        <h3>${esc(item.title || "Talk to be announced")}</h3>
+        <div class="speaker-chips">${chips}</div>
+        ${item.abstract ? `<p class="abstract">${esc(item.abstract)}</p>` : ""}
+      </div>
+    </li>`;
+  }).join("");
+}
+
+const logoList = (orgs) =>
+  orgs.map((o) => `<a href="${esc(o.url)}" target="_blank" rel="noopener"><img src="${esc(o.logo)}" alt="${esc(o.name)}"${o.height ? ` style="height:${Number(o.height)}px"` : ""} /></a>`).join("");
+
+function render(data) {
+  const { event, venue, people, agenda } = data;
+  const $ = (id) => document.getElementById(id);
+
+  const d = new Date(`${event.date}T12:00:00`);
+  const part = (opts) => d.toLocaleDateString("en-GB", opts);
+  const dateText = `${part({ weekday: "long" })} ${part({ day: "numeric", month: "long", year: "numeric" })}`;
+  const fields = {
+    title: `${event.title}:`, theme: event.theme, date: dateText,
+    place: `${venue.name}, ${venue.city}`, about: event.about,
+    venueName: venue.name, address: venue.address, directions: venue.directions,
+    registerNote: event.registerNote,
+  };
+  document.querySelectorAll("[data-field]").forEach((el) => { el.textContent = fields[el.dataset.field] ?? ""; });
+
+  // Register buttons: link to Luma once the URL exists; until then the header button scrolls to the
+  // register band and the others say registration is opening soon.
+  document.querySelectorAll("[data-register]").forEach((a) => {
+    if (event.registerUrl) {
+      Object.assign(a, { href: event.registerUrl, target: "_blank", rel: "noopener" });
+    } else if (!a.closest(".site-header")) {
+      a.textContent = "Registration opening soon";
+      a.setAttribute("aria-disabled", "true");
+      a.removeAttribute("href");
+    }
+  });
+
+  // Speakers are everyone listed on a talk, in agenda order; unfilled talks show as "To be announced".
+  const talks = agenda.items.filter((i) => i.type === "talk");
+  const speakerIds = [...new Set(talks.flatMap((t) => t.speakers || []))];
+  const openTalks = talks.filter((t) => !(t.speakers || []).length).length;
+  $("speakers-list").innerHTML =
+    speakerIds.map((id) => personCard(people[id])).join("") + personCard().repeat(openTalks);
+
+  $("agenda-list").innerHTML = renderAgenda(agenda, people);
+  $("organizers-list").innerHTML = data.organizers.map((id) => personCard(people[id])).join("");
+  $("hosts-list").innerHTML = logoList(data.hosts);
+  $("sponsors-list").innerHTML = logoList(data.sponsors);
+  $("faq-list").innerHTML = data.faq.map((f) => `<details><summary>${esc(f.q)}</summary><p>${esc(f.a)}</p></details>`).join("");
+  $("contact-btn").href = `mailto:${event.contactEmail}`;
+
+  const query = encodeURIComponent(`${venue.name}, ${venue.address}`);
+  $("map").src = `https://www.google.com/maps/embed?origin=mfe&pb=!1m3!2m1!1s${query}!6i16`;
+  $("map-link").href = `https://www.google.com/maps/search/?api=1&query=${query}`;
+}
+
+// Mobile menu
+const menuBtn = document.getElementById("menu-btn");
+const nav = document.getElementById("nav");
+const setMenu = (open) => { nav.classList.toggle("open", open); menuBtn.setAttribute("aria-expanded", String(open)); };
+menuBtn.addEventListener("click", () => setMenu(!nav.classList.contains("open")));
+nav.addEventListener("click", (e) => { if (e.target.closest("a")) setMenu(false); });
+
+fetch("data/content.json")
+  .then((r) => r.json())
+  .then(render)
+  .catch((err) => console.error("Could not load data/content.json", err));

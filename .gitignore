@@ -1,0 +1,4 @@
+# Generated speaker share cards (python3 tools/make_images.py cards)
+share/
+__pycache__/
+.DS_Store

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Deep Matters 2026: Agents for Science</title>
+  <meta name="description" content="A one-day conference in London on AI agents for scientific discovery, bringing together academia, industry and startups." />
+  <link rel="icon" type="image/png" href="images/favicon.png" />
+
+  <!-- Link previews (LinkedIn, X, Slack, WhatsApp). Crawlers need absolute URLs: update both when the site moves. -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://shearestoh.github.io/deep-matters-2026/" />
+  <meta property="og:title" content="Deep Matters 2026: Agents for Science" />
+  <meta property="og:description" content="A one-day conference in London on AI agents for scientific discovery." />
+  <meta property="og:image" content="https://shearestoh.github.io/deep-matters-2026/images/og-card.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="#top" aria-label="Deep Matters 2026 home">
+        <img src="images/logo.png" alt="" width="44" height="30" />
+        <span>Deep Matters <b>2026</b></span>
+      </a>
+      <nav class="nav" id="nav" aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#speakers">Speakers</a>
+        <a href="#agenda">Agenda</a>
+        <a href="#venue">Venue</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <a class="btn btn-sm" data-register href="#register">Register</a>
+      <button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="nav" aria-label="Menu">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container">
+        <h1><span data-field="title"></span><span class="hero-theme" data-field="theme"></span></h1>
+        <ul class="hero-meta">
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><span data-field="date"></span></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><span data-field="place"></span></li>
+        </ul>
+        <div class="actions">
+          <a class="btn" data-register href="#register">Register now</a>
+          <a class="btn btn-ghost" href="#agenda">View agenda</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container narrow">
+        <h2>About</h2>
+        <p class="lead" data-field="about"></p>
+      </div>
+    </section>
+
+    <section id="speakers">
+      <div class="container">
+        <h2>Speakers</h2>
+        <div class="people" id="speakers-list"></div>
+      </div>
+    </section>
+
+    <section id="agenda">
+      <div class="container">
+        <h2>Agenda</h2>
+        <ol class="agenda" id="agenda-list"></ol>
+      </div>
+    </section>
+
+    <section id="venue">
+      <div class="container venue">
+        <div>
+          <h2>Venue</h2>
+          <p class="venue-name" data-field="venueName"></p>
+          <p data-field="address"></p>
+          <h3>Getting there</h3>
+          <p data-field="directions"></p>
+          <p><a id="map-link" target="_blank" rel="noopener">Open in Google Maps ↗</a></p>
+        </div>
+        <iframe id="map" class="map" title="Map of the venue" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </section>
+
+    <section id="register" class="register">
+      <div class="container">
+        <h2>Secure your seat</h2>
+        <p data-field="registerNote"></p>
+        <a class="btn btn-dark" data-register href="#register">Register now →</a>
+      </div>
+    </section>
+
+    <section id="organizers">
+      <div class="container">
+        <h2>Organizers</h2>
+        <div class="people" id="organizers-list"></div>
+      </div>
+    </section>
+
+    <section id="partners">
+      <div class="container partners">
+        <div>
+          <h2 class="eyebrow">Hosted by</h2>
+          <div class="logos" id="hosts-list"></div>
+        </div>
+        <div>
+          <h2 class="eyebrow">Sponsored by</h2>
+          <div class="logos" id="sponsors-list"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="container faq">
+        <div>
+          <h2>FAQ</h2>
+          <div id="faq-list"></div>
+        </div>
+        <aside class="contact-card">
+          <h3>Still have questions?</h3>
+          <p>We're happy to help with anything not covered here.</p>
+          <a class="btn" id="contact-btn">Reach out</a>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">© 2026 Deep Matters</div>
+  </footer>
+</body>
+</html>
