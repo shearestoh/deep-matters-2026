@@ -50,9 +50,13 @@ def centred(draw, y, text, f, fill, width):
     draw.text(((width - text_width(draw, text, f)) // 2, y), text, font=f, fill=fill)
 
 
+def place_text():
+    return f"{VENUE['name']} · {VENUE['city']}"
+
+
 def date_text():
     d = date.fromisoformat(EVENT["date"])
-    return f"{d:%A} {d.day} {d:%B %Y}"
+    return f"{d.day} {d:%B %Y}"
 
 
 def circle(img, size, ring=8):
@@ -77,7 +81,7 @@ def header_band(canvas, height):
     canvas.paste(plate, (60, (height - 84) // 2))
     x = 60 + plate.width + 32
     draw.text((x, height // 2 - 44), f"{EVENT['title']}: {EVENT['theme']}", font=font(34, True), fill=WHITE)
-    draw.text((x, height // 2 + 8), f"{date_text()} · {VENUE['name']}, {VENUE['city']}", font=font(22), fill=GREY)
+    draw.text((x, height // 2 + 8), f"{date_text()}  ·  {place_text()}", font=font(22), fill=GREY)
 
 
 def make_photos():
@@ -102,7 +106,7 @@ def make_og():
     centred(draw, 250, f"{EVENT['title']}:", font(72, True), FG, w)
     centred(draw, 335, EVENT["theme"], font(72, True), AMBER, w)
     centred(draw, 460, date_text(), font(32, True), FG, w)
-    centred(draw, 508, f"{VENUE['name']}, {VENUE['city']}", font(30), "#6b7280", w)
+    centred(draw, 508, place_text(), font(30), "#6b7280", w)
     draw.rectangle((0, h - 14, w, h), fill=GOLD)
     img.save(SITE / "images" / "og-card.png", optimize=True)
     print("og", SITE / "images" / "og-card.png")

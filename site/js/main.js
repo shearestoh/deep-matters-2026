@@ -28,7 +28,7 @@ const profileLinks = (p) => {
 };
 
 const personCard = (p) =>
-  p ? `<article class="person">${avatar(p)}<h3>${esc(p.name)}</h3><p>${esc(p.affiliation)}</p>${profileLinks(p)}</article>`
+  p ? `<article class="person">${avatar(p)}<h3>${esc(p.name)}</h3>${p.role ? `<p class="role">${esc(p.role)}</p>` : ""}<p>${esc(p.affiliation)}</p>${profileLinks(p)}</article>`
     : `<article class="person tba">${avatar()}<h3>To be announced</h3></article>`;
 
 // "09:30" + minutes -> "10:10"
@@ -47,8 +47,9 @@ function renderAgenda({ start, talkMinutes, items }, people) {
     clock = end || clock;
 
     if (item.type !== "talk") {
-      const cls = item.type === "break" ? "slot slot-break" : "slot";
-      return `<li class="${cls}"><time>${time}</time><div><h3>${esc(item.title)}</h3></div></li>`;
+      const cls = item.type === "break" ? "slot slot-break" : "slot slot-session";
+      const desc = item.description ? `<p class="abstract">${esc(item.description)}</p>` : "";
+      return `<li class="${cls}"><time>${time}</time><div><h3>${esc(item.title)}</h3>${desc}</div></li>`;
     }
 
     const speakers = (item.speakers || []).map((id) => people[id]).filter(Boolean);
@@ -67,18 +68,28 @@ function renderAgenda({ start, talkMinutes, items }, people) {
 }
 
 const logoList = (orgs) =>
-  orgs.map((o) => `<a href="${esc(o.url)}" target="_blank" rel="noopener"><img src="${esc(o.logo)}" alt="${esc(o.name)}"${o.height ? ` style="height:${Number(o.height)}px"` : ""} /></a>`).join("");
+  orgs.map((o) => `<a href="${esc(o.url)}" target="_blank" rel="noopener"><img src="${esc(o.logo)}" alt="${esc(o.name)}" data-scale="${Number(o.scale) || 1}" /></a>`).join("");
+
+// Size logos by aspect ratio so wide wordmarks and compact marks look equally weighted
+// (height ∝ ratio^-0.6, slightly stronger than equal area). Per-logo "scale" fine-tunes.
+function balanceLogos() {
+  document.querySelectorAll(".logos img").forEach((img) => {
+    const fit = () => {
+      const ratio = img.naturalWidth / img.naturalHeight;
+      img.style.height = `${Math.round(95 * Math.pow(ratio, -0.6) * img.dataset.scale)}px`;
+    };
+    img.complete && img.naturalWidth ? fit() : img.addEventListener("load", fit, { once: true });
+  });
+}
 
 function render(data) {
   const { event, venue, people, agenda } = data;
   const $ = (id) => document.getElementById(id);
 
-  const d = new Date(`${event.date}T12:00:00`);
-  const part = (opts) => d.toLocaleDateString("en-GB", opts);
-  const dateText = `${part({ weekday: "long" })} ${part({ day: "numeric", month: "long", year: "numeric" })}`;
+  const dateText = new Date(`${event.date}T12:00:00`).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
   const fields = {
     title: `${event.title}:`, theme: event.theme, date: dateText,
-    place: `${venue.name}, ${venue.city}`, about: event.about,
+    place: `${venue.name} · ${venue.city}`, about: event.about,
     venueName: venue.name, address: venue.address, directions: venue.directions,
     registerNote: event.registerNote,
   };
@@ -107,6 +118,7 @@ function render(data) {
   $("organizers-list").innerHTML = data.organizers.map((id) => personCard(people[id])).join("");
   $("hosts-list").innerHTML = logoList(data.hosts);
   $("sponsors-list").innerHTML = logoList(data.sponsors);
+  balanceLogos();
   $("faq-list").innerHTML = data.faq.map((f) => `<details><summary>${esc(f.q)}</summary><p>${esc(f.a)}</p></details>`).join("");
   $("contact-btn").href = `mailto:${event.contactEmail}`;
 

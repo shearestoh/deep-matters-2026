@@ -23,7 +23,7 @@
     <div class="container header-bar">
       <a class="brand" href="#top" aria-label="Deep Matters 2026 home">
         <img src="images/logo.png" alt="" width="44" height="30" />
-        <span>Deep Matters <b>2026</b></span>
+        <span>Deep Matters</span>
       </a>
       <nav class="nav" id="nav" aria-label="Primary">
         <a href="#about">About</a>
@@ -55,7 +55,7 @@
     </section>
 
     <section id="about">
-      <div class="container narrow">
+      <div class="container">
         <h2>About</h2>
         <p class="lead" data-field="about"></p>
       </div>
@@ -80,10 +80,9 @@
         <div>
           <h2>Venue</h2>
           <p class="venue-name" data-field="venueName"></p>
-          <p data-field="address"></p>
+          <p><a id="map-link" data-field="address" target="_blank" rel="noopener"></a></p>
           <h3>Getting there</h3>
           <p data-field="directions"></p>
-          <p><a id="map-link" target="_blank" rel="noopener">Open in Google Maps ↗</a></p>
         </div>
         <iframe id="map" class="map" title="Map of the venue" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
