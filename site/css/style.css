@@ -188,7 +188,7 @@ a.chip:hover strong { color: var(--accent-ink); text-decoration: underline; }
   0%, 100% { box-shadow: 0 0 0 0 rgba(250, 178, 43, 0); border-color: var(--border); }
   15%, 70% { box-shadow: 0 0 0 6px rgba(250, 178, 43, .5); border-color: var(--accent); }
 }
-.person.flash { animation: flash 2.2s ease; }
+.person.flash { animation: flash 1s ease; }
 .person.quiet:hover .person-back { opacity: 0; visibility: hidden; }  /* just scrolled into view: see openSpeaker() */
 .person.quiet:hover { transform: none; box-shadow: none; }
 .chip .avatar { --size: 44px; border-width: 2px; }
