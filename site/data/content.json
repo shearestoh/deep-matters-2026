@@ -28,7 +28,7 @@
       { "type": "talk" },
       { "type": "talk" },
       { "type": "talk" },
-      { "type": "break", "title": "Lunch", "minutes": 60, "description": "Have casual conversations with fellow attendees and speakers." },
+      { "type": "break", "title": "Lunch", "minutes": 60 },
       { "type": "talk", "title": "MAESTRO: Orchestrating the Self-Driving Lab", "speakers": ["sheares-toh"] },
       { "type": "talk" },
       { "type": "talk" },
@@ -36,7 +36,7 @@
       { "type": "talk" },
       { "type": "talk" },
       { "type": "session", "title": "Closing Remarks", "minutes": 10 },
-      { "type": "break", "title": "Networking", "minutes": 35 },
+      { "type": "break", "title": "Networking", "minutes": 35, "description": "Enjoy your final conversations with fellow attendees and speakers. Drinks will be served." },
       { "type": "session", "title": "Close" }
     ]
   },
