@@ -125,12 +125,10 @@ function linkAgendaToSpeakers() {
   });
 }
 
-// Contact card: the address is a mailto link; the envelope button copies it and confirms with a toast.
+// Contact card: the envelope button copies the address and confirms with a toast.
 function setupContact(email) {
-  const link = document.getElementById("contact-email");
   const btn = document.getElementById("copy-email");
   const toast = document.getElementById("copy-toast");
-  Object.assign(link, { href: `mailto:${email}`, textContent: email });
   let timer;
   const show = (msg) => {
     toast.textContent = msg;
