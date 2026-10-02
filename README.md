@@ -24,8 +24,9 @@ Opening `index.html` directly from disk won't work, because the page loads `data
 
 ## Editing content (`site/data/content.json`)
 
-- **Event details**: `event` and `venue`. Once the Luma page exists, set `event.registerUrl`. Until then, the
-  register buttons say "Registration opens soon".
+- **Event details**: `event` and `venue`. `event.registerUrl` is the Luma page, and `event.lumaEventId`
+  (from Luma's "Embed" code) opens Luma's checkout as a pop-up on the site instead of a new tab. Clear
+  `registerUrl` and the register buttons go back to "Registration opens soon".
 - **People**: add speakers and organizers to `people`, keyed by an id such as `"jane-doe"`. Fields are
   `name`, `affiliation`, and optionally `role`, `photo`, `logo` (institution logo shown on the card),
   `linkedin` and `website`. The whole card links to LinkedIn, or to the website if there's no LinkedIn.

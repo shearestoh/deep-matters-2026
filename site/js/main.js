@@ -121,16 +121,24 @@ function render(data) {
   document.querySelectorAll("[data-field]").forEach((el) => { el.textContent = fields[el.dataset.field] ?? ""; });
 
   // Register buttons: link to Luma once the URL exists; until then the header button scrolls to the
-  // register band and the others say registration is opening soon.
+  // register band and the others say registration is opening soon. With a lumaEventId, Luma's embed
+  // script turns the links into an on-page checkout pop-up (the plain link remains the fallback).
   document.querySelectorAll("[data-register]").forEach((a) => {
     if (event.registerUrl) {
       Object.assign(a, { href: event.registerUrl, target: "_blank", rel: "noopener" });
+      if (event.lumaEventId) Object.assign(a.dataset, { lumaAction: "checkout", lumaEventId: event.lumaEventId });
     } else if (!a.closest(".site-header")) {
       a.textContent = "Registration opens soon";
       a.setAttribute("aria-disabled", "true");
       a.removeAttribute("href");
     }
   });
+  // Luma binds its buttons once on load, so load it only after the attributes above are set.
+  if (event.registerUrl && event.lumaEventId) {
+    document.head.appendChild(Object.assign(document.createElement("script"), {
+      id: "luma-checkout", src: "https://embed.lu.ma/checkout-button.js",
+    }));
+  }
 
   // Speakers are everyone listed on a talk, in agenda order; unfilled talks show as "To be announced".
   const talks = agenda.items.filter((i) => i.type === "talk");
