@@ -94,23 +94,16 @@ function renderGallery(gallery) {
   track.style.setProperty("--duration", `${gallery.photos.length * 6}s`);
 }
 
-// Clicking a talk row (or a speaker in it) scrolls to that speaker's card and opens its bio panel
-// (.open); the panel closes when the visitor clicks anywhere outside the card.
+// Clicking a talk row (or a speaker in it) scrolls to that speaker's card and briefly highlights it.
+// The card stays on its front (photo, name, affiliation); the bio still appears on hover/tap.
 function openSpeaker(id) {
   const card = document.getElementById(`speaker-${id}`);
   if (!card) return;
   card.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "center" });
-  document.querySelectorAll(".person.open").forEach((c) => c.classList.remove("open"));
-  card.classList.add("open");
-  card.focus({ preventScroll: true });
   card.classList.remove("flash");
   void card.offsetWidth; // restart the highlight animation
   card.classList.add("flash");
 }
-
-document.addEventListener("click", (e) => {
-  document.querySelectorAll(".person.open").forEach((c) => { if (!c.contains(e.target)) c.classList.remove("open"); });
-});
 
 function linkAgendaToSpeakers() {
   const agenda = document.getElementById("agenda-list");
@@ -119,7 +112,6 @@ function linkAgendaToSpeakers() {
     const row = e.target.closest(".slot-link");
     if (!chip && !row) return;
     e.preventDefault();
-    e.stopPropagation(); // keep the document listener below from closing the card straight away
     openSpeaker(chip ? chip.hash.replace("#speaker-", "") : row.dataset.speaker);
   });
 }
