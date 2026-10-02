@@ -27,8 +27,10 @@ Opening `index.html` directly from disk won't work, because the page loads `data
 - **Event details**: `event` and `venue`. Once the Luma page exists, set `event.registerUrl`. Until then, the
   register buttons say "Registration opening soon".
 - **People**: add speakers and organizers to `people`, keyed by an id such as `"jane-doe"`. Fields are
-  `name`, `affiliation`, and optionally `photo`, `linkedin` and `website`. Anyone without a photo gets an
-  initials avatar.
+  `name`, `affiliation`, and optionally `role`, `photo`, `logo` (institution logo shown on the card),
+  `linkedin` and `website`. The whole card links to LinkedIn, or to the website if there's no LinkedIn.
+  Anyone without a photo gets an initials avatar. `sheares-toh-2` … `-8` are temporary layout previews:
+  delete them, and their agenda references, once real speakers are confirmed.
 - **Agenda**: set `agenda.start`, then list `items` in order. Times are calculated automatically from
   `minutes` (talks default to `talkMinutes`). To fill in a talk:
 
@@ -41,6 +43,8 @@ Opening `index.html` directly from disk won't work, because the page loads `data
 - **Logos**: `hosts` / `sponsors`. Logos are sized automatically to look equally weighted. Crop each file
   tightly with no padding, and use the optional `scale` (e.g. `1.2`) to fine-tune one logo.
 - **FAQ**: `faq` list of `{ "q", "a" }`.
+- **Gallery**: `gallery.title` plus `gallery.photos` (`src`, `alt`), shown as an auto-scrolling strip that
+  pauses on hover. Remove `gallery` to hide the section.
 
 ## Images
 
@@ -52,6 +56,8 @@ python3 tools/make_images.py                         # all steps, or: photos | o
 
 - `photos`: crops and resizes everything in `assets/people/` into `site/images/people/<id>.jpg`.
   Set `"photo": "images/people/<id>.jpg"` for that person.
+- `gallery`: resizes the full-size photos in `assets/gallery/` into `site/images/gallery/` (960×640).
+  The originals are git-ignored because they're about 6MB each.
 - `og`: regenerates `site/images/og-card.png`, the image shown when the link is shared. Run it if the
   title, date or venue changes.
 - `cards`: makes LinkedIn announcement images for each speaker in `share/` (not committed).

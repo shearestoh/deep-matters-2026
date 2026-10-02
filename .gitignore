@@ -2,3 +2,5 @@
 share/
 __pycache__/
 .DS_Store
+# Full-size gallery originals (resized copies live in site/images/gallery)
+assets/gallery/

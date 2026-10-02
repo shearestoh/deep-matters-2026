@@ -27,9 +27,20 @@ const profileLinks = (p) => {
   return links.length ? `<div class="links">${links.join("")}</div>` : "";
 };
 
-const personCard = (p) =>
-  p ? `<article class="person">${avatar(p)}<h3>${esc(p.name)}</h3>${p.role ? `<p class="role">${esc(p.role)}</p>` : ""}<p>${esc(p.affiliation)}</p>${profileLinks(p)}</article>`
-    : `<article class="person tba">${avatar()}<h3>To be announced</h3></article>`;
+// The whole card links to LinkedIn (or the website if there's no LinkedIn) via a stretched link on the name.
+function personCard(p) {
+  if (!p) return `<article class="person tba">${avatar()}<h3>To be announced</h3></article>`;
+  const href = p.linkedin || p.website;
+  const name = href ? `<a class="card-link" href="${esc(href)}" target="_blank" rel="noopener">${esc(p.name)}</a>` : esc(p.name);
+  return `<article class="person${href ? " linked" : ""}">
+    ${avatar(p)}
+    <h3>${name}</h3>
+    ${p.role ? `<p class="role">${esc(p.role)}</p>` : ""}
+    <p>${esc(p.affiliation)}</p>
+    ${p.logo ? `<img class="org-logo" src="${esc(p.logo)}" alt="" loading="lazy" />` : ""}
+    ${profileLinks(p)}
+  </article>`;
+}
 
 // "09:30" + minutes -> "10:10"
 const addMinutes = (hhmm, mins) => {
@@ -67,6 +78,17 @@ function renderAgenda({ start, talkMinutes, items }, people) {
   }).join("");
 }
 
+// Infinite marquee: the photo set is rendered twice and the track slides by exactly one set width.
+function renderGallery(gallery) {
+  const section = document.getElementById("gallery");
+  if (!gallery?.photos?.length) { section.hidden = true; return; }
+  const imgs = (hidden) => gallery.photos.map((ph) =>
+    `<img src="${esc(ph.src)}" alt="${hidden ? "" : esc(ph.alt)}" loading="lazy" width="960" height="640" />`).join("");
+  const track = document.getElementById("gallery-track");
+  track.innerHTML = `<div class="marquee-set">${imgs(false)}</div><div class="marquee-set" aria-hidden="true">${imgs(true)}</div>`;
+  track.style.setProperty("--duration", `${gallery.photos.length * 6}s`);
+}
+
 const logoList = (orgs) =>
   orgs.map((o) => `<a href="${esc(o.url)}" target="_blank" rel="noopener"><img src="${esc(o.logo)}" alt="${esc(o.name)}" data-scale="${Number(o.scale) || 1}" /></a>`).join("");
 
@@ -91,7 +113,7 @@ function render(data) {
     title: `${event.title}:`, theme: event.theme, date: dateText,
     place: `${venue.name} · ${venue.city}`, about: event.about,
     venueName: venue.name, address: venue.address, directions: venue.directions,
-    registerNote: event.registerNote,
+    registerNote: event.registerNote, galleryTitle: data.gallery?.title,
   };
   document.querySelectorAll("[data-field]").forEach((el) => { el.textContent = fields[el.dataset.field] ?? ""; });
 
@@ -101,7 +123,7 @@ function render(data) {
     if (event.registerUrl) {
       Object.assign(a, { href: event.registerUrl, target: "_blank", rel: "noopener" });
     } else if (!a.closest(".site-header")) {
-      a.textContent = "Registration opening soon";
+      a.textContent = "Registration opens soon";
       a.setAttribute("aria-disabled", "true");
       a.removeAttribute("href");
     }
@@ -119,6 +141,7 @@ function render(data) {
   $("hosts-list").innerHTML = logoList(data.hosts);
   $("sponsors-list").innerHTML = logoList(data.sponsors);
   balanceLogos();
+  renderGallery(data.gallery);
   $("faq-list").innerHTML = data.faq.map((f) => `<details><summary>${esc(f.q)}</summary><p>${esc(f.a)}</p></details>`).join("");
   $("contact-btn").href = `mailto:${event.contactEmail}`;
 

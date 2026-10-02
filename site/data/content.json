@@ -9,27 +9,19 @@
     "contactEmail": "st225@ic.ac.uk"
   },
 
-  "venue": {
-    "name": "Institute of Physics",
-    "address": "37 Caledonian Road, London N1 9BU",
-    "city": "London",
-    "directions": "5 minutes' walk from King's Cross St Pancras (Underground, National Rail and Eurostar)."
-  },
+  "venue": { "name": "Institute of Physics", "address": "37 Caledonian Road, London N1 9BU", "city": "London", "directions": "5 mins walk from King's Cross St Pancras" },
 
   "people": {
-    "sheares-toh": {
-      "name": "Sheares Toh",
-      "role": "PhD Student",
-      "affiliation": "Imperial College London",
-      "photo": "images/people/sheares-toh.jpg"
-    },
-    "sam-cooper": {
-      "name": "Sam Cooper",
-      "role": "Professor in AI for Materials Design",
-      "affiliation": "Imperial College London",
-      "photo": "images/people/sam-cooper.jpg",
-      "website": "https://profiles.imperial.ac.uk/samuel.cooper"
-    }
+    "_preview": "sheares-toh-2 … sheares-toh-8 are temporary copies to preview a full speaker grid. Delete them (and their agenda references) when real speakers are added.",
+    "sheares-toh": { "name": "Sheares Toh", "role": "PhD Student", "affiliation": "Imperial College London", "logo": "images/logos/imperial.svg", "photo": "images/people/sheares-toh.jpg", "linkedin": "https://www.linkedin.com/in/shearestoh" },
+    "sam-cooper": { "name": "Sam Cooper", "role": "Professor in AI for Materials Design", "affiliation": "Imperial College London", "photo": "images/people/sam-cooper.jpg", "website": "https://profiles.imperial.ac.uk/samuel.cooper", "logo": "images/logos/imperial.svg" },
+    "sheares-toh-2": { "name": "Sheares Toh", "role": "PhD Student", "affiliation": "Imperial College London", "logo": "images/logos/imperial.svg", "photo": "images/people/sheares-toh.jpg", "linkedin": "https://www.linkedin.com/in/shearestoh" },
+    "sheares-toh-3": { "name": "Sheares Toh", "role": "PhD Student", "affiliation": "Imperial College London", "logo": "images/logos/imperial.svg", "photo": "images/people/sheares-toh.jpg", "linkedin": "https://www.linkedin.com/in/shearestoh" },
+    "sheares-toh-4": { "name": "Sheares Toh", "role": "PhD Student", "affiliation": "Imperial College London", "logo": "images/logos/imperial.svg", "photo": "images/people/sheares-toh.jpg", "linkedin": "https://www.linkedin.com/in/shearestoh" },
+    "sheares-toh-5": { "name": "Sheares Toh", "role": "PhD Student", "affiliation": "Imperial College London", "logo": "images/logos/imperial.svg", "photo": "images/people/sheares-toh.jpg", "linkedin": "https://www.linkedin.com/in/shearestoh" },
+    "sheares-toh-6": { "name": "Sheares Toh", "role": "PhD Student", "affiliation": "Imperial College London", "logo": "images/logos/imperial.svg", "photo": "images/people/sheares-toh.jpg", "linkedin": "https://www.linkedin.com/in/shearestoh" },
+    "sheares-toh-7": { "name": "Sheares Toh", "role": "PhD Student", "affiliation": "Imperial College London", "logo": "images/logos/imperial.svg", "photo": "images/people/sheares-toh.jpg", "linkedin": "https://www.linkedin.com/in/shearestoh" },
+    "sheares-toh-8": { "name": "Sheares Toh", "role": "PhD Student", "affiliation": "Imperial College London", "logo": "images/logos/imperial.svg", "photo": "images/people/sheares-toh.jpg", "linkedin": "https://www.linkedin.com/in/shearestoh" }
   },
 
   "organizers": ["sheares-toh", "sam-cooper"],
@@ -38,35 +30,51 @@
     "start": "09:30",
     "talkMinutes": 40,
     "items": [
-      { "type": "break",   "title": "Registration & Networking", "minutes": 30,
-        "description": "Pick up your badge and mingle around. Light refreshments will be served." },
+      { "type": "break", "title": "Registration & Networking", "minutes": 30, "description": "Pick up your badge and mingle around. Light refreshments will be served." },
       { "type": "session", "title": "Welcome & Opening Remarks", "minutes": 10 },
       { "type": "talk", "speakers": ["sheares-toh"] },
-      { "type": "talk", "speakers": ["sheares-toh"] },
-      { "type": "talk", "speakers": ["sheares-toh"] },
-      { "type": "break",   "title": "Lunch", "minutes": 60 },
-      { "type": "talk", "speakers": ["sheares-toh"] },
-      { "type": "talk", "speakers": ["sheares-toh"] },
-      { "type": "talk", "speakers": ["sheares-toh"] },
-      { "type": "break",   "title": "Coffee Break", "minutes": 30 },
-      { "type": "talk", "speakers": ["sheares-toh"] },
-      { "type": "talk", "speakers": ["sheares-toh"] },
+      { "type": "talk", "speakers": ["sheares-toh-2"] },
+      { "type": "talk", "speakers": ["sheares-toh-3"] },
+      { "type": "break", "title": "Lunch", "minutes": 60 },
+      { "type": "talk", "speakers": ["sheares-toh-4"] },
+      { "type": "talk", "speakers": ["sheares-toh-5"] },
+      { "type": "talk", "speakers": ["sheares-toh-6"] },
+      { "type": "break", "title": "Coffee Break", "minutes": 30 },
+      { "type": "talk", "speakers": ["sheares-toh-7"] },
+      { "type": "talk", "speakers": ["sheares-toh-8"] },
       { "type": "session", "title": "Closing Remarks", "minutes": 10 },
-      { "type": "break",   "title": "Networking" }
+      { "type": "break", "title": "Networking" }
     ]
   },
 
   "hosts": [
     { "name": "Imperial College London", "logo": "images/logos/imperial.svg", "url": "https://www.imperial.ac.uk" }
   ],
+
   "sponsors": [
     { "name": "Henry Royce Institute", "logo": "images/logos/royce.png", "scale": 1.2, "url": "https://www.royce.ac.uk" },
     { "name": "Polaron", "logo": "images/logos/polaron.png", "url": "https://polaron.ai" }
   ],
 
   "faq": [
-    { "q": "Is food provided?", "a": "Yes — lunch and coffee are provided throughout the day." },
     { "q": "Who should attend?", "a": "Researchers, students and industry practitioners who are building, using or curious about AI agents in science." },
+    { "q": "Is food provided?", "a": "Yes — lunch and coffee are provided throughout the day." },
     { "q": "Is the venue accessible?", "a": "If you have any access requirements, please get in touch and we will be happy to help." }
-  ]
+  ],
+
+  "gallery": {
+    "title": "Highlights from Deep Matters 2025",
+    "photos": [
+      { "src": "images/gallery/01-group-photo.jpg", "alt": "Group photo of Deep Matters 2025 attendees" },
+      { "src": "images/gallery/02-talk.jpg", "alt": "Audience watching a talk" },
+      { "src": "images/gallery/03-networking.jpg", "alt": "Attendees chatting during a break" },
+      { "src": "images/gallery/04-pastries.jpg", "alt": "Pastries and fruit at the refreshments table" },
+      { "src": "images/gallery/05-audience.jpg", "alt": "Packed room listening to a speaker" },
+      { "src": "images/gallery/06-discussion.jpg", "alt": "Attendee asking a question from the audience" },
+      { "src": "images/gallery/07-coffee-break.jpg", "alt": "Networking over coffee and pastries" },
+      { "src": "images/gallery/08-lunch.jpg", "alt": "Lunch buffet" },
+      { "src": "images/gallery/09-question.jpg", "alt": "Attendee standing to ask a question" },
+      { "src": "images/gallery/10-refreshments.jpg", "alt": "Fresh orange juice being poured" }
+    ]
+  }
 }

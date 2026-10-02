@@ -3,6 +3,7 @@
 
     python3 tools/make_images.py          # all of the below
     python3 tools/make_images.py photos   # assets/people/<id>.* -> site/images/people/<id>.jpg (400x400)
+    python3 tools/make_images.py gallery  # assets/gallery/* -> site/images/gallery/*.jpg (960x640)
     python3 tools/make_images.py og       # site/images/og-card.png (link preview, 1200x630)
     python3 tools/make_images.py cards    # share/<id>-{landscape,square}.png for each speaker
 
@@ -96,6 +97,18 @@ def make_photos():
         print("photo", out / f"{src.stem}.jpg")
 
 
+def make_gallery():
+    """assets/gallery/* (full-size originals, not committed) -> site/images/gallery/*.jpg (960x640)."""
+    out = SITE / "images" / "gallery"
+    out.mkdir(parents=True, exist_ok=True)
+    for src in sorted((ROOT / "assets" / "gallery").glob("*")):
+        if src.suffix.lower() not in {".jpg", ".jpeg", ".png", ".webp"}:
+            continue
+        img = ImageOps.fit(ImageOps.exif_transpose(Image.open(src)).convert("RGB"), (960, 640), Image.LANCZOS)
+        img.save(out / f"{src.stem}.jpg", quality=78, optimize=True, progressive=True)
+        print("gallery", out / f"{src.stem}.jpg")
+
+
 def make_og():
     w, h = 1200, 630
     img = Image.new("RGB", (w, h), WHITE)
@@ -137,6 +150,6 @@ def make_cards():
 
 
 if __name__ == "__main__":
-    steps = {"photos": make_photos, "og": make_og, "cards": make_cards}
+    steps = {"photos": make_photos, "gallery": make_gallery, "og": make_og, "cards": make_cards}
     for step in sys.argv[1:] or steps:
         steps[step]()
