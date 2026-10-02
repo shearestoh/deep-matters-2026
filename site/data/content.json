@@ -42,7 +42,8 @@
   },
 
   "hosts": [
-    { "name": "Imperial College London", "logo": "images/logos/imperial.svg", "url": "https://www.imperial.ac.uk" }
+    { "name": "Imperial College London", "logo": "images/logos/imperial.svg", "url": "https://www.imperial.ac.uk" },
+    { "name": "Institute of Physics", "logo": "images/logos/iop.svg", "url": "https://www.iop.org" }
   ],
 
   "sponsors": [
