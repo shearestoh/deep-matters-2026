@@ -128,7 +128,7 @@ section:last-of-type { border-bottom: 0; }
 .person .person-back p { color: var(--fg); font-size: .92rem; line-height: 1.5; }
 @media (max-width: 719px) { .person-back { padding: .9rem; gap: .6rem; } .person .person-back p { font-size: .82rem; line-height: 1.45; } }
 .person.has-back:hover, .person.has-back:focus-within { transform: translateY(-3px); box-shadow: 0 12px 26px rgba(0, 0, 0, .1); }
-.person.has-back:hover .person-back, .person.has-back:focus-within .person-back { opacity: 1; visibility: visible; }
+.person.has-back:hover .person-back, .person.has-back:focus-within .person-back, .person.open .person-back { opacity: 1; visibility: visible; }
 .person p { margin: 0; color: var(--muted); font-size: .92rem; line-height: 1.4; }
 .person .role { color: var(--fg); }
 .person.tba { background: transparent; border-style: dashed; }
@@ -180,7 +180,12 @@ section:last-of-type { border-bottom: 0; }
 .abstract { margin: .5rem 0 0; color: #4b5563; font-size: .95rem; max-width: 75ch; }
 
 .speaker-chips { display: flex; flex-wrap: wrap; gap: .5rem 1.25rem; margin-top: .7rem; }
-.chip { display: flex; align-items: center; gap: .6rem; }
+.chip { display: flex; align-items: center; gap: .6rem; color: inherit; text-decoration: none; }
+a.chip:hover strong { color: var(--accent-ink); text-decoration: underline; }
+.slot-link { cursor: pointer; transition: background .15s ease; }
+.slot-link:hover { background: rgba(250, 178, 43, .07); }
+@keyframes flash { 0%, 100% { box-shadow: 0 0 0 0 rgba(250, 178, 43, 0); } 25%, 60% { box-shadow: 0 0 0 6px rgba(250, 178, 43, .55); } }
+.person.flash { animation: flash 1.6s ease; }
 .chip .avatar { --size: 44px; border-width: 2px; }
 .chip .avatar.ghost { border-width: 2px; }
 .chip strong { display: block; font-size: .95rem; line-height: 1.3; }

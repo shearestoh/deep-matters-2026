@@ -29,7 +29,7 @@
       { "type": "talk" },
       { "type": "talk" },
       { "type": "break", "title": "Lunch", "minutes": 60, "description": "Enjoy an hour of relaxed conversation over lunch with fellow attendees and speakers." },
-      { "type": "talk", "speakers": ["sheares-toh"] },
+      { "type": "talk", "title": "MAESTRO: Orchestrating the Self-Driving Lab", "speakers": ["sheares-toh"] },
       { "type": "talk" },
       { "type": "talk" },
       { "type": "break", "title": "Coffee Break", "minutes": 30 },

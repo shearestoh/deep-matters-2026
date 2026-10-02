@@ -29,14 +29,15 @@ const profileLinks = (p) => {
 
 // Front: photo, name, role and institution (logo if available, else text).
 // Hover/tap (or keyboard focus) reveals the short bio with LinkedIn/website buttons.
-function personCard(p) {
+// domId is set for speaker cards so agenda rows can link to them.
+function personCard(p, domId) {
   if (!p) return `<article class="person tba">${avatar()}<h3>To be announced</h3></article>`;
   const links = profileLinks(p);
   const back = p.bio || links ? `<div class="person-back">${p.bio ? `<p>${esc(p.bio)}</p>` : ""}${links}</div>` : "";
   const org = p.logo
     ? `<img class="org-logo" src="${esc(p.logo)}" alt="${esc(p.affiliation)}" loading="lazy" />`
     : `<p>${esc(p.affiliation)}</p>`;
-  return `<article class="person${back ? " has-back" : ""}"${back ? ' tabindex="0"' : ""}>
+  return `<article class="person${back ? " has-back" : ""}"${domId ? ` id="${esc(domId)}"` : ""}${back ? ' tabindex="0"' : ""}>
     ${avatar(p)}
     <h3>${esc(p.name)}</h3>
     ${p.role ? `<p class="role">${esc(p.role)}</p>` : ""}
@@ -66,11 +67,12 @@ function renderAgenda({ start, talkMinutes, items }, people) {
       return `<li class="${cls}"><time>${time}</time><div><h3>${esc(item.title)}</h3>${desc}</div></li>`;
     }
 
-    const speakers = (item.speakers || []).map((id) => people[id]).filter(Boolean);
-    const chips = speakers.length
-      ? speakers.map((p) => `<div class="chip">${avatar(p)}<div><strong>${esc(p.name)}</strong><span>${esc(p.affiliation)}</span></div></div>`).join("")
+    const ids = (item.speakers || []).filter((id) => people[id]);
+    const chips = ids.length
+      ? ids.map((id) => `<a class="chip" href="#speaker-${esc(id)}">${avatar(people[id])}<div><strong>${esc(people[id].name)}</strong><span>${esc(people[id].affiliation)}</span></div></a>`).join("")
       : `<div class="chip">${avatar()}<div><span>Speaker to be announced</span></div></div>`;
-    return `<li class="slot${item.title ? "" : " tba"}">
+    const link = ids.length ? ` data-speaker="${esc(ids[0])}"` : "";
+    return `<li class="slot${item.title ? "" : " tba"}${ids.length ? " slot-link" : ""}"${link}>
       <time>${time}</time>
       <div>
         <h3>${esc(item.title || "To be announced soon")}</h3>
@@ -90,6 +92,36 @@ function renderGallery(gallery) {
   const track = document.getElementById("gallery-track");
   track.innerHTML = `<div class="marquee-set">${imgs(false)}</div><div class="marquee-set" aria-hidden="true">${imgs(true)}</div>`;
   track.style.setProperty("--duration", `${gallery.photos.length * 6}s`);
+}
+
+// Clicking a talk row (or a speaker in it) scrolls to that speaker's card and opens its bio panel
+// (.open); the panel closes when the visitor clicks anywhere outside the card.
+function openSpeaker(id) {
+  const card = document.getElementById(`speaker-${id}`);
+  if (!card) return;
+  card.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "center" });
+  document.querySelectorAll(".person.open").forEach((c) => c.classList.remove("open"));
+  card.classList.add("open");
+  card.focus({ preventScroll: true });
+  card.classList.remove("flash");
+  void card.offsetWidth; // restart the highlight animation
+  card.classList.add("flash");
+}
+
+document.addEventListener("click", (e) => {
+  document.querySelectorAll(".person.open").forEach((c) => { if (!c.contains(e.target)) c.classList.remove("open"); });
+});
+
+function linkAgendaToSpeakers() {
+  const agenda = document.getElementById("agenda-list");
+  agenda.addEventListener("click", (e) => {
+    const chip = e.target.closest("a.chip");
+    const row = e.target.closest(".slot-link");
+    if (!chip && !row) return;
+    e.preventDefault();
+    e.stopPropagation(); // keep the document listener below from closing the card straight away
+    openSpeaker(chip ? chip.hash.replace("#speaker-", "") : row.dataset.speaker);
+  });
 }
 
 const logoList = (orgs) =>
@@ -145,9 +177,10 @@ function render(data) {
   const speakerIds = [...new Set(talks.flatMap((t) => t.speakers || []))];
   const openTalks = talks.filter((t) => !(t.speakers || []).length).length;
   $("speakers-list").innerHTML =
-    speakerIds.map((id) => personCard(people[id])).join("") + personCard().repeat(openTalks);
+    speakerIds.map((id) => personCard(people[id], `speaker-${id}`)).join("") + personCard().repeat(openTalks);
 
   $("agenda-list").innerHTML = renderAgenda(agenda, people);
+  linkAgendaToSpeakers();
   $("organizers-list").innerHTML = data.organizers.map((id) => personCard(people[id])).join("");
   $("hosts-list").innerHTML = logoList(data.hosts);
   $("sponsors-list").innerHTML = logoList(data.sponsors);
