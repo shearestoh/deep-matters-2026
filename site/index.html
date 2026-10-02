@@ -133,7 +133,18 @@
         </div>
         <aside class="contact-card">
           <h3>Still have questions?</h3>
-          <a class="btn" id="contact-btn">Reach out</a>
+          <div class="contact-row">
+            <div>
+              <p>Reach out to us via email!</p>
+              <a class="contact-email" id="contact-email"></a>
+            </div>
+            <div class="copy-wrap">
+              <button class="copy-btn" id="copy-email" type="button" aria-label="Copy email address">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+              </button>
+              <span class="copy-toast" id="copy-toast" role="status" aria-live="polite"></span>
+            </div>
+          </div>
         </aside>
       </div>
     </section>

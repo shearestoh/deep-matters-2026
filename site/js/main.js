@@ -125,6 +125,39 @@ function linkAgendaToSpeakers() {
   });
 }
 
+// Contact card: the address is a mailto link; the envelope button copies it and confirms with a toast.
+function setupContact(email) {
+  const link = document.getElementById("contact-email");
+  const btn = document.getElementById("copy-email");
+  const toast = document.getElementById("copy-toast");
+  Object.assign(link, { href: `mailto:${email}`, textContent: email });
+  let timer;
+  const show = (msg) => {
+    toast.textContent = msg;
+    toast.classList.add("show");
+    clearTimeout(timer);
+    timer = setTimeout(() => toast.classList.remove("show"), 2000);
+  };
+  const legacyCopy = () => {
+    const ta = Object.assign(document.createElement("textarea"), { value: email });
+    ta.style.cssText = "position:fixed;opacity:0";
+    document.body.appendChild(ta);
+    ta.select();
+    const ok = document.execCommand("copy");
+    ta.remove();
+    return ok;
+  };
+  btn.addEventListener("click", async () => {
+    try {
+      if (navigator.clipboard && window.isSecureContext) await navigator.clipboard.writeText(email);
+      else if (!legacyCopy()) throw new Error("copy failed");
+      show("Email address copied!");
+    } catch {
+      show(email); // couldn't copy: at least show the address
+    }
+  });
+}
+
 const logoList = (orgs) =>
   orgs.map((o) => `<a href="${esc(o.url)}" target="_blank" rel="noopener"><img src="${esc(o.logo)}" alt="${esc(o.name)}" data-scale="${Number(o.scale) || 1}" /></a>`).join("");
 
@@ -188,7 +221,7 @@ function render(data) {
   balanceLogos();
   renderGallery(data.gallery);
   $("faq-list").innerHTML = data.faq.map((f) => `<details><summary>${esc(f.q)}</summary><p>${esc(f.a)}</p></details>`).join("");
-  $("contact-btn").href = `mailto:${event.contactEmail}`;
+  setupContact(event.contactEmail);
 
   const query = encodeURIComponent(`${venue.name}, ${venue.address}`);
   $("map").src = `https://www.google.com/maps/embed?origin=mfe&pb=!1m3!2m1!1s${query}!6i16`;
