@@ -3,7 +3,7 @@
     "title": "Deep Matters 2026",
     "theme": "Agents for Science",
     "date": "2026-11-26",
-    "about": "The Deep Matters conference series is back! This year, we explore how AI agents are transforming the way science is done — from generating hypotheses and making decisions to running simulations and experiments. Don't miss this one-day event for everyone across academia, industry and startups.",
+    "about": "The Deep Matters conference series is back! This year, we explore how AI agents are transforming the way science is done — from generating hypotheses to making decisions to running simulations and experiments. Don't miss this one-day event for everyone across academia, industry and startups.",
     "registerUrl": "",
     "registerNote": "Free · Limited places, subject to approval.",
     "contactEmail": "st225@ic.ac.uk"
@@ -13,15 +13,15 @@
 
   "people": {
     "_preview": "sheares-toh-2 … sheares-toh-8 are temporary copies to preview a full speaker grid. Delete them (and their agenda references) when real speakers are added.",
-    "sheares-toh": { "name": "Sheares Toh", "role": "PhD Student", "affiliation": "Imperial College London", "logo": "images/logos/imperial.svg", "photo": "images/people/sheares-toh.jpg", "linkedin": "https://www.linkedin.com/in/shearestoh" },
-    "sam-cooper": { "name": "Sam Cooper", "role": "Professor in AI for Materials Design", "affiliation": "Imperial College London", "photo": "images/people/sam-cooper.jpg", "website": "https://profiles.imperial.ac.uk/samuel.cooper", "logo": "images/logos/imperial.svg" },
-    "sheares-toh-2": { "name": "Sheares Toh", "role": "PhD Student", "affiliation": "Imperial College London", "logo": "images/logos/imperial.svg", "photo": "images/people/sheares-toh.jpg", "linkedin": "https://www.linkedin.com/in/shearestoh" },
-    "sheares-toh-3": { "name": "Sheares Toh", "role": "PhD Student", "affiliation": "Imperial College London", "logo": "images/logos/imperial.svg", "photo": "images/people/sheares-toh.jpg", "linkedin": "https://www.linkedin.com/in/shearestoh" },
-    "sheares-toh-4": { "name": "Sheares Toh", "role": "PhD Student", "affiliation": "Imperial College London", "logo": "images/logos/imperial.svg", "photo": "images/people/sheares-toh.jpg", "linkedin": "https://www.linkedin.com/in/shearestoh" },
-    "sheares-toh-5": { "name": "Sheares Toh", "role": "PhD Student", "affiliation": "Imperial College London", "logo": "images/logos/imperial.svg", "photo": "images/people/sheares-toh.jpg", "linkedin": "https://www.linkedin.com/in/shearestoh" },
-    "sheares-toh-6": { "name": "Sheares Toh", "role": "PhD Student", "affiliation": "Imperial College London", "logo": "images/logos/imperial.svg", "photo": "images/people/sheares-toh.jpg", "linkedin": "https://www.linkedin.com/in/shearestoh" },
-    "sheares-toh-7": { "name": "Sheares Toh", "role": "PhD Student", "affiliation": "Imperial College London", "logo": "images/logos/imperial.svg", "photo": "images/people/sheares-toh.jpg", "linkedin": "https://www.linkedin.com/in/shearestoh" },
-    "sheares-toh-8": { "name": "Sheares Toh", "role": "PhD Student", "affiliation": "Imperial College London", "logo": "images/logos/imperial.svg", "photo": "images/people/sheares-toh.jpg", "linkedin": "https://www.linkedin.com/in/shearestoh" }
+    "sheares-toh": { "name": "Sheares Toh", "role": "PhD Student", "bio": "PhD student at Imperial College London. [Placeholder — replace with a 1–2 sentence description.]", "affiliation": "Imperial College London", "logo": "images/logos/imperial.svg", "photo": "images/people/sheares-toh.jpg", "linkedin": "https://www.linkedin.com/in/shearestoh" },
+    "sam-cooper": { "name": "Sam Cooper", "role": "Professor in AI for Materials Design", "bio": "Leads a group at Imperial developing simulation and machine-learning tools for materials design, and is co-founder and Chief Scientist of Polaron.", "affiliation": "Imperial College London", "photo": "images/people/sam-cooper.jpg", "website": "https://profiles.imperial.ac.uk/samuel.cooper", "logo": "images/logos/imperial.svg" },
+    "sheares-toh-2": { "name": "Sheares Toh", "role": "PhD Student", "bio": "PhD student at Imperial College London. [Placeholder — replace with a 1–2 sentence description.]", "affiliation": "Imperial College London", "logo": "images/logos/imperial.svg", "photo": "images/people/sheares-toh.jpg", "linkedin": "https://www.linkedin.com/in/shearestoh" },
+    "sheares-toh-3": { "name": "Sheares Toh", "role": "PhD Student", "bio": "PhD student at Imperial College London. [Placeholder — replace with a 1–2 sentence description.]", "affiliation": "Imperial College London", "logo": "images/logos/imperial.svg", "photo": "images/people/sheares-toh.jpg", "linkedin": "https://www.linkedin.com/in/shearestoh" },
+    "sheares-toh-4": { "name": "Sheares Toh", "role": "PhD Student", "bio": "PhD student at Imperial College London. [Placeholder — replace with a 1–2 sentence description.]", "affiliation": "Imperial College London", "logo": "images/logos/imperial.svg", "photo": "images/people/sheares-toh.jpg", "linkedin": "https://www.linkedin.com/in/shearestoh" },
+    "sheares-toh-5": { "name": "Sheares Toh", "role": "PhD Student", "bio": "PhD student at Imperial College London. [Placeholder — replace with a 1–2 sentence description.]", "affiliation": "Imperial College London", "logo": "images/logos/imperial.svg", "photo": "images/people/sheares-toh.jpg", "linkedin": "https://www.linkedin.com/in/shearestoh" },
+    "sheares-toh-6": { "name": "Sheares Toh", "role": "PhD Student", "bio": "PhD student at Imperial College London. [Placeholder — replace with a 1–2 sentence description.]", "affiliation": "Imperial College London", "logo": "images/logos/imperial.svg", "photo": "images/people/sheares-toh.jpg", "linkedin": "https://www.linkedin.com/in/shearestoh" },
+    "sheares-toh-7": { "name": "Sheares Toh", "role": "PhD Student", "bio": "PhD student at Imperial College London. [Placeholder — replace with a 1–2 sentence description.]", "affiliation": "Imperial College London", "logo": "images/logos/imperial.svg", "photo": "images/people/sheares-toh.jpg", "linkedin": "https://www.linkedin.com/in/shearestoh" },
+    "sheares-toh-8": { "name": "Sheares Toh", "role": "PhD Student", "bio": "PhD student at Imperial College London. [Placeholder — replace with a 1–2 sentence description.]", "affiliation": "Imperial College London", "logo": "images/logos/imperial.svg", "photo": "images/people/sheares-toh.jpg", "linkedin": "https://www.linkedin.com/in/shearestoh" }
   },
 
   "organizers": ["sheares-toh", "sam-cooper"],
@@ -57,7 +57,7 @@
   ],
 
   "faq": [
-    { "q": "Who should attend?", "a": "Researchers, students and industry practitioners who are building, using or curious about AI agents in science." },
+    { "q": "Who should attend?", "a": "Researchers, students and industry practitioners interested in building and deploying AI agents in their respective fields of science." },
     { "q": "Is food provided?", "a": "Yes — lunch and coffee are provided throughout the day." },
     { "q": "Is the venue accessible?", "a": "If you have any access requirements, please get in touch and we will be happy to help." }
   ],

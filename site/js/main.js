@@ -27,18 +27,21 @@ const profileLinks = (p) => {
   return links.length ? `<div class="links">${links.join("")}</div>` : "";
 };
 
-// The whole card links to LinkedIn (or the website if there's no LinkedIn) via a stretched link on the name.
+// Front: photo, name, role and institution (logo if available, else text).
+// Hover/tap (or keyboard focus) reveals the short bio with LinkedIn/website buttons.
 function personCard(p) {
   if (!p) return `<article class="person tba">${avatar()}<h3>To be announced</h3></article>`;
-  const href = p.linkedin || p.website;
-  const name = href ? `<a class="card-link" href="${esc(href)}" target="_blank" rel="noopener">${esc(p.name)}</a>` : esc(p.name);
-  return `<article class="person${href ? " linked" : ""}">
+  const links = profileLinks(p);
+  const back = p.bio || links ? `<div class="person-back">${p.bio ? `<p>${esc(p.bio)}</p>` : ""}${links}</div>` : "";
+  const org = p.logo
+    ? `<img class="org-logo" src="${esc(p.logo)}" alt="${esc(p.affiliation)}" loading="lazy" />`
+    : `<p>${esc(p.affiliation)}</p>`;
+  return `<article class="person${back ? " has-back" : ""}"${back ? ' tabindex="0"' : ""}>
     ${avatar(p)}
-    <h3>${name}</h3>
+    <h3>${esc(p.name)}</h3>
     ${p.role ? `<p class="role">${esc(p.role)}</p>` : ""}
-    <p>${esc(p.affiliation)}</p>
-    ${p.logo ? `<img class="org-logo" src="${esc(p.logo)}" alt="" loading="lazy" />` : ""}
-    ${profileLinks(p)}
+    ${org}
+    ${back}
   </article>`;
 }
 
@@ -70,7 +73,7 @@ function renderAgenda({ start, talkMinutes, items }, people) {
     return `<li class="slot${item.title ? "" : " tba"}">
       <time>${time}</time>
       <div>
-        <h3>${esc(item.title || "Talk to be announced")}</h3>
+        <h3>${esc(item.title || "To be announced soon")}</h3>
         <div class="speaker-chips">${chips}</div>
         ${item.abstract ? `<p class="abstract">${esc(item.abstract)}</p>` : ""}
       </div>
