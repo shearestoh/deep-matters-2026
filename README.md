@@ -40,7 +40,7 @@ Opening `index.html` directly from disk won't work, because the page loads `data
 
   Speakers appear in the Speakers section automatically, in agenda order. Any talk without a speaker shows
   as "To be announced".
-- **Logos**: `hosts` / `sponsors`. Logos are sized automatically to look equally weighted. Crop each file
+- **Logos**: `partners` is a list of labelled groups (Host, Venue, Sponsors), each with `orgs`. Logos are sized automatically to look equally weighted. Crop each file
   tightly with no padding, and use the optional `scale` (e.g. `1.2`) to fine-tune one logo.
 - **FAQ**: `faq` list of `{ "q", "a" }`.
 - **Gallery**: `gallery.title` plus `gallery.photos` (`src`, `alt`), shown as a continuously scrolling strip. Remove `gallery` to hide the section.

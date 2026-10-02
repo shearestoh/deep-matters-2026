@@ -41,18 +41,22 @@
     ]
   },
 
-  "hosts": [
-    { "name": "Imperial College London", "logo": "images/logos/imperial.svg", "url": "https://www.imperial.ac.uk" }
-  ],
-
-  "sponsors": [
-    { "name": "Henry Royce Institute", "logo": "images/logos/royce.png", "scale": 1.2, "url": "https://www.royce.ac.uk" },
-    { "name": "Polaron", "logo": "images/logos/polaron.png", "url": "https://polaron.ai" }
+  "partners": [
+    { "label": "Host", "orgs": [
+      { "name": "Imperial College London", "logo": "images/logos/imperial.svg", "url": "https://www.imperial.ac.uk" }
+    ] },
+    { "label": "Venue", "orgs": [
+      { "name": "Institute of Physics", "logo": "images/logos/iop.svg", "url": "https://www.iop.org" }
+    ] },
+    { "label": "Sponsors", "orgs": [
+      { "name": "Henry Royce Institute", "logo": "images/logos/royce.png", "scale": 1.2, "url": "https://www.royce.ac.uk" },
+      { "name": "Polaron", "logo": "images/logos/polaron.png", "url": "https://polaron.ai" }
+    ] }
   ],
 
   "faq": [
     { "q": "Who should attend?", "a": "Researchers, students and startups interested in building and deploying AI agents in their respective scientific workflows." },
-    { "q": "Is food provided?", "a": "Yes — lunch and coffee are provided throughout the day." },
+    { "q": "Is food provided?", "a": "Yes, lunch and light refreshments are provided." },
     { "q": "Is the venue accessible?", "a": "If you have any access requirements, please get in touch and we will be happy to help." }
   ],
 
