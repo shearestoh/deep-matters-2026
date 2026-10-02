@@ -25,7 +25,7 @@ Opening `index.html` directly from disk won't work, because the page loads `data
 ## Editing content (`site/data/content.json`)
 
 - **Event details**: `event` and `venue`. Once the Luma page exists, set `event.registerUrl`. Until then, the
-  register buttons say "Registration opening soon".
+  register buttons say "Registration opens soon".
 - **People**: add speakers and organizers to `people`, keyed by an id such as `"jane-doe"`. Fields are
   `name`, `affiliation`, and optionally `role`, `photo`, `logo` (institution logo shown on the card),
   `linkedin` and `website`. The whole card links to LinkedIn, or to the website if there's no LinkedIn.
@@ -51,7 +51,7 @@ Opening `index.html` directly from disk won't work, because the page loads `data
 ```bash
 pip install pillow
 cp ~/Downloads/jane.jpg assets/people/jane-doe.jpg   # file name = person id
-python3 tools/make_images.py                         # all steps, or: photos | og | cards
+python3 tools/make_images.py                         # all steps, or: photos | gallery | og | cards
 ```
 
 - `photos`: crops and resizes everything in `assets/people/` into `site/images/people/<id>.jpg`.
