@@ -23,7 +23,7 @@
     "start": "09:30",
     "talkMinutes": 40,
     "items": [
-      { "type": "break", "title": "Registration & Networking", "minutes": 30, "description": "Pick up your badge and mingle around. Light refreshments will be served." },
+      { "type": "break", "title": "Registration", "minutes": 30, "description": "Pick up your badge and mingle around. Light refreshments will be served." },
       { "type": "session", "title": "Welcome & Opening Remarks", "minutes": 10 },
       { "type": "talk" },
       { "type": "talk" },
