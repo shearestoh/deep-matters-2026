@@ -51,6 +51,29 @@ def centred(draw, y, text, f, fill, width):
     draw.text(((width - text_width(draw, text, f)) // 2, y), text, font=f, fill=fill)
 
 
+THEME_GRADIENT = ["#f5a623", "#e8890c", "#c2410c"]  # matches --theme-gradient in site/css/style.css
+
+
+def centred_gradient(img, y, text, f, stops=THEME_GRADIENT):
+    """Draw centred text filled with a left-to-right gradient."""
+    draw = ImageDraw.Draw(img)
+    w = text_width(draw, text, f)
+    h = f.size * 2
+    mask = Image.new("L", (w, h), 0)
+    ImageDraw.Draw(mask).text((0, 0), text, font=f, fill=255)
+    rgb = [tuple(int(c[i:i + 2], 16) for i in (1, 3, 5)) for c in stops]
+    grad = Image.new("RGB", (w, h))
+    gp = grad.load()
+    for x in range(w):
+        t = x / max(w - 1, 1) * (len(rgb) - 1)
+        i = min(int(t), len(rgb) - 2)
+        f_ = t - i
+        col = tuple(round(rgb[i][k] + (rgb[i + 1][k] - rgb[i][k]) * f_) for k in range(3))
+        for yy in range(h):
+            gp[x, yy] = col
+    img.paste(grad, ((img.width - w) // 2, y), mask)
+
+
 def place_text():
     return f"{VENUE['name']} · {VENUE['city']}"
 
@@ -117,7 +140,7 @@ def make_og():
     logo = logo.resize((int(logo.width * 130 / logo.height), 130), Image.LANCZOS)
     img.paste(logo, ((w - logo.width) // 2, 80), logo)
     centred(draw, 250, f"{EVENT['title']}:", font(72, True), FG, w)
-    centred(draw, 335, EVENT["theme"], font(72, True), AMBER, w)
+    centred_gradient(img, 335, EVENT["theme"], font(72, True))
     centred(draw, 460, date_text(), font(32, True), FG, w)
     centred(draw, 508, place_text(), font(30), "#6b7280", w)
     draw.rectangle((0, h - 14, w, h), fill=GOLD)

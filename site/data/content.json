@@ -43,7 +43,8 @@
       { "type": "talk", "speakers": ["sheares-toh-7"] },
       { "type": "talk", "speakers": ["sheares-toh-8"] },
       { "type": "session", "title": "Closing Remarks", "minutes": 10 },
-      { "type": "break", "title": "Networking" }
+      { "type": "break", "title": "Networking", "minutes": 35 },
+      { "type": "session", "title": "Close" }
     ]
   },
 

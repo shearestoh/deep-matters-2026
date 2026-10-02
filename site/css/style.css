@@ -8,6 +8,7 @@
   --accent: #fab22b;        /* gold: fills, rings, buttons */
   --accent-2: #d97706;      /* amber: large accents */
   --accent-ink: #b45309;    /* amber dark enough for small text on white */
+  --theme-gradient: linear-gradient(90deg, #f5a623 0%, #e8890c 50%, #c2410c 100%);  /* 'Agents for Science' — also used on the Luma cover */
   --radius: 18px;
   --shadow: 0 4px 16px rgba(0, 0, 0, .06), 0 1px 3px rgba(0, 0, 0, .05);
   --header-h: 64px;
@@ -95,7 +96,10 @@ section:last-of-type { border-bottom: 0; }
 }
 .hero h1 { font-size: clamp(1.9rem, 7.5vw, 4.4rem); font-weight: 900; letter-spacing: -.03em; line-height: 1.05; margin-bottom: 1.5rem; }
 .hero h1 > span { display: block; }
-.hero-theme { color: var(--accent-2); }
+.hero-theme {
+  width: fit-content; margin-inline: auto; color: var(--accent-2);
+  background: var(--theme-gradient); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
 .hero-meta { list-style: none; padding: 0; margin: 0 0 2rem; display: flex; flex-wrap: wrap; justify-content: center; gap: .6rem 1.75rem; font-weight: 600; font-size: 1.05rem; }
 .hero-meta li { display: flex; align-items: center; gap: .5rem; }
 .hero-meta svg { width: 20px; height: 20px; color: var(--accent-2); flex: none; }

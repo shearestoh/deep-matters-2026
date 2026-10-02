@@ -57,7 +57,7 @@ function renderAgenda({ start, talkMinutes, items }, people) {
   return items.map((item) => {
     const minutes = item.minutes ?? (item.type === "talk" ? talkMinutes : 0);
     const end = minutes ? addMinutes(clock, minutes) : null;
-    const time = end ? `${clock} – ${end}` : `From ${clock}`;
+    const time = end ? `${clock} – ${end}` : clock;  // no duration = a single point in time
     clock = end || clock;
 
     if (item.type !== "talk") {
