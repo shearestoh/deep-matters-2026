@@ -43,8 +43,7 @@ Opening `index.html` directly from disk won't work, because the page loads `data
 - **Logos**: `hosts` / `sponsors`. Logos are sized automatically to look equally weighted. Crop each file
   tightly with no padding, and use the optional `scale` (e.g. `1.2`) to fine-tune one logo.
 - **FAQ**: `faq` list of `{ "q", "a" }`.
-- **Gallery**: `gallery.title` plus `gallery.photos` (`src`, `alt`), shown as an auto-scrolling strip that
-  pauses on hover. Remove `gallery` to hide the section.
+- **Gallery**: `gallery.title` plus `gallery.photos` (`src`, `alt`), shown as a continuously scrolling strip. Remove `gallery` to hide the section.
 
 ## Images
 
