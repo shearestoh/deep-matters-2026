@@ -1,0 +1,99 @@
+<!doctype html>
+<!-- Luma cover image (1600×1600). Rendered to PNG by tools/luma/render.sh.
+     cover.html            → abstract background
+     cover.html?bg=photo   → 2025 photo background -->
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;800;900&display=swap" rel="stylesheet" />
+<style>
+  :root { --gold: #fab22b; --amber: #f08a1c; --ink: #0b0f1a; }
+  * { box-sizing: border-box; margin: 0; }
+  html, body { width: 1600px; height: 1600px; overflow: hidden; }
+  body { font-family: Inter, system-ui, sans-serif; color: #fff; background: var(--ink); position: relative; }
+
+  .bg { position: absolute; inset: 0; }
+  /* Abstract: dark base, soft gold/amber glows, dot grid */
+  .abstract {
+    background:
+      radial-gradient(900px 700px at 85% 10%, rgba(250, 178, 43, .38), transparent 60%),
+      radial-gradient(800px 800px at 0% 100%, rgba(240, 138, 28, .30), transparent 60%),
+      radial-gradient(600px 500px at 40% 45%, rgba(99, 102, 241, .16), transparent 70%),
+      linear-gradient(160deg, #111827 0%, #0b0f1a 55%, #090c14 100%);
+  }
+  .dots {
+    background-image: radial-gradient(rgba(255, 255, 255, .10) 1.5px, transparent 1.5px);
+    background-size: 40px 40px;
+    -webkit-mask-image: linear-gradient(180deg, #000 0%, transparent 85%);
+  }
+  #network { position: absolute; inset: 0; }
+  /* Photo: darkened 2025 photo with a gold-tinted gradient for legibility */
+  .photo { background: url(photo-bg.jpg) center / cover; filter: saturate(.85); }
+  .shade {
+    background:
+      linear-gradient(180deg, rgba(11, 15, 26, .80) 0%, rgba(11, 15, 26, .45) 30%, rgba(11, 15, 26, .92) 75%, rgba(11, 15, 26, .97) 100%),
+      radial-gradient(900px 600px at 90% 0%, rgba(250, 178, 43, .25), transparent 60%);
+  }
+
+  .card { position: absolute; inset: 0; padding: 120px; display: flex; flex-direction: column; }
+  .logo { height: 120px; width: auto; align-self: flex-start; }
+  .titles { margin-top: auto; }
+  .event { font-size: 118px; font-weight: 800; letter-spacing: -.035em; line-height: 1; }
+  .theme {
+    font-size: 150px; font-weight: 900; letter-spacing: -.04em; line-height: 1.02; margin-top: 18px;
+    background: linear-gradient(90deg, #ffd166, var(--gold) 45%, var(--amber));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .footer {
+    margin-top: 90px; padding-top: 48px; border-top: 3px solid rgba(250, 178, 43, .7);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .when { font-size: 64px; font-weight: 600; letter-spacing: -.01em; }
+  .when span { color: var(--gold); margin: 0 .35em; }
+  .imperial { height: 46px; width: auto; opacity: .95; }
+</style>
+</head>
+<body>
+  <div class="bg abstract" id="bg-abstract"></div>
+  <div class="bg dots" id="bg-dots"></div>
+  <svg id="network" viewBox="0 0 1600 1600" aria-hidden="true"></svg>
+  <div class="bg photo" id="bg-photo" hidden></div>
+  <div class="bg shade" id="bg-shade" hidden></div>
+
+  <div class="card">
+    <img class="logo" src="logo-light.png" alt="" />
+    <div class="titles">
+      <div class="event">Deep Matters 2026</div>
+      <div class="theme">Agents for Science</div>
+    </div>
+    <div class="footer">
+      <div class="when">26 Nov<span>|</span>London</div>
+      <img class="imperial" src="imperial-white.svg" alt="Imperial College London" />
+    </div>
+  </div>
+
+<script>
+  if (new URLSearchParams(location.search).get("bg") === "photo") {
+    ["bg-abstract", "bg-dots", "network"].forEach((id) => document.getElementById(id).remove());
+    ["bg-photo", "bg-shade"].forEach((id) => (document.getElementById(id).hidden = false));
+  } else {
+    // Faint "agent network": seeded random nodes in the upper half, linked to near neighbours
+    let seed = 7;
+    const rand = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
+    const nodes = Array.from({ length: 34 }, () => [700 + rand() * 900, 40 + rand() * 820]);
+    const svg = document.getElementById("network");
+    let out = "";
+    nodes.forEach(([x1, y1], i) => nodes.slice(i + 1).forEach(([x2, y2]) => {
+      const d = Math.hypot(x1 - x2, y1 - y2);
+      if (d < 230) out += `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="rgba(250,178,43,${(0.35 * (1 - d / 230)).toFixed(2)})" stroke-width="2"/>`;
+    }));
+    nodes.forEach(([x, y], i) => {
+      const r = i % 6 === 0 ? 7 : 4;
+      out += `<circle cx="${x}" cy="${y}" r="${r}" fill="${i % 6 === 0 ? "#fab22b" : "rgba(255,255,255,.55)"}"/>`;
+    });
+    svg.innerHTML = out;
+  }
+</script>
+</body>
+</html>
