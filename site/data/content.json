@@ -3,7 +3,7 @@
     "title": "Deep Matters 2026",
     "theme": "Agents for Science",
     "date": "2026-11-26",
-    "about": "The Deep Matters conference series is back! This year, we explore how AI agents are transforming the way science is done — from generating hypotheses to making decisions in the lab to knowledge discovery. Don't miss this one-day event for everyone across academia, industry and startups.",
+    "about": "The Deep Matters conference series is back! This year, we explore how AI agents are transforming the way science is done — from hypothesis generation to decision making to knowledge discovery. Don't miss this one-day event for everyone in academia, industry and startups.",
     "registerUrl": "",
     "registerNote": "Free · Limited places, subject to approval.",
     "contactEmail": "st225@ic.ac.uk"
@@ -12,16 +12,8 @@
   "venue": { "name": "Institute of Physics", "address": "37 Caledonian Road, London N1 9BU", "city": "London", "directions": "5 mins walk from King's Cross St Pancras" },
 
   "people": {
-    "_preview": "sheares-toh-2 … sheares-toh-8 are temporary copies to preview a full speaker grid. Delete them (and their agenda references) when real speakers are added.",
     "sheares-toh": { "name": "Sheares Toh", "role": "PhD Student", "bio": "Sheares is a PhD student in the TLDR group at the Dyson School of Design Engineering. He enjoys playing chess and exploring museums.", "affiliation": "Imperial College London", "logo": "images/logos/imperial.svg", "photo": "images/people/sheares-toh.jpg", "linkedin": "https://www.linkedin.com/in/shearestoh" },
-    "sam-cooper": { "name": "Sam Cooper", "role": "Professor in AI for Materials Design", "bio": "Sam leads the Tools for Learning, Design and Research (TLDR) research group in the Dyson School of Design Engineering. He is also co-founder and Chief Scientist of Polaron.", "affiliation": "Imperial College London", "photo": "images/people/sam-cooper.jpg", "linkedin": "https://www.linkedin.com/in/sam-cooper-88687238", "logo": "images/logos/imperial.svg" },
-    "sheares-toh-2": { "name": "Sheares Toh", "role": "PhD Student", "bio": "Sheares is a PhD student in the TLDR group at the Dyson School of Design Engineering. He enjoys playing chess and exploring museums.", "affiliation": "Imperial College London", "logo": "images/logos/imperial.svg", "photo": "images/people/sheares-toh.jpg", "linkedin": "https://www.linkedin.com/in/shearestoh" },
-    "sheares-toh-3": { "name": "Sheares Toh", "role": "PhD Student", "bio": "Sheares is a PhD student in the TLDR group at the Dyson School of Design Engineering. He enjoys playing chess and exploring museums.", "affiliation": "Imperial College London", "logo": "images/logos/imperial.svg", "photo": "images/people/sheares-toh.jpg", "linkedin": "https://www.linkedin.com/in/shearestoh" },
-    "sheares-toh-4": { "name": "Sheares Toh", "role": "PhD Student", "bio": "Sheares is a PhD student in the TLDR group at the Dyson School of Design Engineering. He enjoys playing chess and exploring museums.", "affiliation": "Imperial College London", "logo": "images/logos/imperial.svg", "photo": "images/people/sheares-toh.jpg", "linkedin": "https://www.linkedin.com/in/shearestoh" },
-    "sheares-toh-5": { "name": "Sheares Toh", "role": "PhD Student", "bio": "Sheares is a PhD student in the TLDR group at the Dyson School of Design Engineering. He enjoys playing chess and exploring museums.", "affiliation": "Imperial College London", "logo": "images/logos/imperial.svg", "photo": "images/people/sheares-toh.jpg", "linkedin": "https://www.linkedin.com/in/shearestoh" },
-    "sheares-toh-6": { "name": "Sheares Toh", "role": "PhD Student", "bio": "Sheares is a PhD student in the TLDR group at the Dyson School of Design Engineering. He enjoys playing chess and exploring museums.", "affiliation": "Imperial College London", "logo": "images/logos/imperial.svg", "photo": "images/people/sheares-toh.jpg", "linkedin": "https://www.linkedin.com/in/shearestoh" },
-    "sheares-toh-7": { "name": "Sheares Toh", "role": "PhD Student", "bio": "Sheares is a PhD student in the TLDR group at the Dyson School of Design Engineering. He enjoys playing chess and exploring museums.", "affiliation": "Imperial College London", "logo": "images/logos/imperial.svg", "photo": "images/people/sheares-toh.jpg", "linkedin": "https://www.linkedin.com/in/shearestoh" },
-    "sheares-toh-8": { "name": "Sheares Toh", "role": "PhD Student", "bio": "Sheares is a PhD student in the TLDR group at the Dyson School of Design Engineering. He enjoys playing chess and exploring museums.", "affiliation": "Imperial College London", "logo": "images/logos/imperial.svg", "photo": "images/people/sheares-toh.jpg", "linkedin": "https://www.linkedin.com/in/shearestoh" }
+    "sam-cooper": { "name": "Sam Cooper", "role": "Professor in AI for Materials Design", "bio": "Sam leads the Tools for Learning, Design and Research (TLDR) research group in the Dyson School of Design Engineering. He is also co-founder and Chief Scientist of Polaron.", "affiliation": "Imperial College London", "photo": "images/people/sam-cooper.jpg", "linkedin": "https://www.linkedin.com/in/sam-cooper-88687238", "logo": "images/logos/imperial.svg" }
   },
 
   "organizers": ["sheares-toh", "sam-cooper"],
@@ -32,16 +24,16 @@
     "items": [
       { "type": "break", "title": "Registration & Networking", "minutes": 30, "description": "Pick up your badge and mingle around. Light refreshments will be served." },
       { "type": "session", "title": "Welcome & Opening Remarks", "minutes": 10 },
-      { "type": "talk", "speakers": ["sheares-toh"] },
-      { "type": "talk", "speakers": ["sheares-toh-2"] },
-      { "type": "talk", "speakers": ["sheares-toh-3"] },
+      { "type": "talk" },
+      { "type": "talk" },
+      { "type": "talk" },
       { "type": "break", "title": "Lunch", "minutes": 60, "description": "Enjoy an hour of relaxed conversation over lunch with fellow attendees and speakers." },
-      { "type": "talk", "speakers": ["sheares-toh-4"] },
-      { "type": "talk", "speakers": ["sheares-toh-5"] },
-      { "type": "talk", "speakers": ["sheares-toh-6"] },
+      { "type": "talk", "speakers": ["sheares-toh"] },
+      { "type": "talk" },
+      { "type": "talk" },
       { "type": "break", "title": "Coffee Break", "minutes": 30 },
-      { "type": "talk", "speakers": ["sheares-toh-7"] },
-      { "type": "talk", "speakers": ["sheares-toh-8"] },
+      { "type": "talk" },
+      { "type": "talk" },
       { "type": "session", "title": "Closing Remarks", "minutes": 10 },
       { "type": "break", "title": "Networking", "minutes": 35 },
       { "type": "session", "title": "Close" }

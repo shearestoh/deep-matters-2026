@@ -29,8 +29,7 @@ Opening `index.html` directly from disk won't work, because the page loads `data
 - **People**: add speakers and organizers to `people`, keyed by an id such as `"jane-doe"`. Fields are
   `name`, `affiliation`, and optionally `role`, `photo`, `logo` (institution logo shown on the card),
   `linkedin` and `website`. The whole card links to LinkedIn, or to the website if there's no LinkedIn.
-  Anyone without a photo gets an initials avatar. `sheares-toh-2` … `-8` are temporary layout previews:
-  delete them, and their agenda references, once real speakers are confirmed.
+  Anyone without a photo gets an initials avatar.
 - **Agenda**: set `agenda.start`, then list `items` in order. Times are calculated automatically from
   `minutes` (talks default to `talkMinutes`). To fill in a talk:
 
