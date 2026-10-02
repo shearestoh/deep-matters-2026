@@ -103,6 +103,15 @@ function openSpeaker(id) {
   card.classList.remove("flash");
   void card.offsetWidth; // restart the highlight animation
   card.classList.add("flash");
+  // The scroll can leave the pointer resting over the card, which would trigger the hover bio.
+  // Ignore hover until the visitor actually moves the mouse (after the scroll has finished).
+  card.classList.add("quiet");
+  const wake = (e) => {
+    if (!e.movementX && !e.movementY) return;
+    card.classList.remove("quiet");
+    window.removeEventListener("pointermove", wake);
+  };
+  setTimeout(() => window.addEventListener("pointermove", wake), 800);
 }
 
 function linkAgendaToSpeakers() {
