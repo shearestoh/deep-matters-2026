@@ -233,7 +233,7 @@ const setMenu = (open) => { nav.classList.toggle("open", open); menuBtn.setAttri
 menuBtn.addEventListener("click", () => setMenu(!nav.classList.contains("open")));
 nav.addEventListener("click", (e) => { if (e.target.closest("a")) setMenu(false); });
 
-fetch("data/content.json")
+fetch("data/content.json", { cache: "no-cache" })  // always revalidate, so content edits show immediately
   .then((r) => r.json())
   .then(render)
   .catch((err) => console.error("Could not load data/content.json", err));
