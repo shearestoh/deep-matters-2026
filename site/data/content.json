@@ -36,7 +36,7 @@
       { "type": "talk" },
       { "type": "talk" },
       { "type": "session", "title": "Closing Remarks", "minutes": 10 },
-      { "type": "break", "title": "Networking", "minutes": 35, "description": "Enjoy your final conversations with fellow attendees and speakers. Drinks will be served." },
+      { "type": "break", "title": "Networking", "minutes": 35, "description": "Join us for a short after-party with fellow attendees and speakers. Drinks will be served." },
       { "type": "session", "title": "Close" }
     ]
   },
