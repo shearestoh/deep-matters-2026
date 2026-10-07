@@ -176,6 +176,7 @@ section:last-of-type { border-bottom: 0; }
 .slot-session h3 { font-weight: 500; }
 .slot-break { background: var(--panel); padding-block: .85rem; }
 .slot-break h3 { font-weight: 500; color: var(--muted); }
+.slot-block .abstract { font-style: italic; color: var(--muted); }  /* talk block whose speakers are not yet confirmed */
 .slot.tba h3 { color: var(--muted); font-weight: 600; font-style: italic; }
 .abstract { margin: .5rem 0 0; color: #4b5563; font-size: .95rem; max-width: 75ch; }
 

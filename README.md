@@ -38,8 +38,11 @@ Opening `index.html` directly from disk won't work, because the page loads `data
   { "type": "talk", "title": "…", "speakers": ["jane-doe"], "abstract": "…" }
   ```
 
-  Speakers appear in the Speakers section automatically, in agenda order. Any talk without a speaker shows
-  as "To be announced".
+  Speakers appear in the Speakers section automatically, in agenda order. Until the programme is final,
+  use talk blocks for unconfirmed periods, e.g. `{ "type": "block", "title": "Morning talks", "minutes": 120,
+  "description": "Speakers to be announced soon." }`: they show one time range without individual slots, and
+  the Speakers section adds a single "More speakers to be announced soon" card. As speakers are confirmed,
+  shrink the block's `minutes` and add their `talk` items.
 - **Logos**: `partners` is a list of labelled groups (Host, Venue, Sponsors), each with `orgs`. Logos are sized automatically to look equally weighted. Crop each file
   tightly with no padding, and use the optional `scale` (e.g. `1.2`) to fine-tune one logo.
 - **FAQ**: `faq` list of `{ "q", "a" }`.

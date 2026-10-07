@@ -31,7 +31,7 @@ const profileLinks = (p) => {
 // Hover/tap (or keyboard focus) reveals the short bio with LinkedIn/website buttons.
 // domId is set for speaker cards so agenda rows can link to them.
 function personCard(p, domId) {
-  if (!p) return `<article class="person tba">${avatar()}<h3>To be announced</h3></article>`;
+  if (!p) return `<article class="person tba">${avatar()}<h3>More speakers to be announced soon</h3></article>`;
   const links = profileLinks(p);
   const back = p.bio || links ? `<div class="person-back">${p.bio ? `<p>${esc(p.bio)}</p>` : ""}${links}</div>` : "";
   const org = p.logo
@@ -62,7 +62,7 @@ function renderAgenda({ start, talkMinutes, items }, people) {
     clock = end || clock;
 
     if (item.type !== "talk") {
-      const cls = item.type === "break" ? "slot slot-break" : "slot slot-session";
+      const cls = { break: "slot slot-break", block: "slot slot-block" }[item.type] || "slot slot-session";
       const desc = item.description ? `<p class="abstract">${esc(item.description)}</p>` : "";
       return `<li class="${cls}"><time>${time}</time><div><h3>${esc(item.title)}</h3>${desc}</div></li>`;
     }
@@ -207,9 +207,10 @@ function render(data) {
   // Speakers are everyone listed on a talk, in agenda order; unfilled talks show as "To be announced".
   const talks = agenda.items.filter((i) => i.type === "talk");
   const speakerIds = [...new Set(talks.flatMap((t) => t.speakers || []))];
-  const openTalks = talks.filter((t) => !(t.speakers || []).length).length;
+  // Confirmed speakers only, plus one "more to come" card while unconfirmed talk blocks remain.
+  const moreToCome = agenda.items.some((i) => i.type === "block" || (i.type === "talk" && !(i.speakers || []).length));
   $("speakers-list").innerHTML =
-    speakerIds.map((id) => personCard(people[id], `speaker-${id}`)).join("") + personCard().repeat(openTalks);
+    speakerIds.map((id) => personCard(people[id], `speaker-${id}`)).join("") + (moreToCome ? personCard() : "");
 
   $("agenda-list").innerHTML = renderAgenda(agenda, people);
   linkAgendaToSpeakers();
