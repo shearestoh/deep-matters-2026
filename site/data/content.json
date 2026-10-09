@@ -15,7 +15,7 @@
   "people": {
     "sheares-toh": { "name": "Sheares Toh", "role": "PhD Student", "bio": "Sheares builds AI agents for scientific discovery and optimisation in self-driving labs. He is also an avid chess player and a watch aficionado.", "affiliation": "Imperial College London", "logo": "images/logos/imperial.svg", "photo": "images/people/sheares-toh.jpg", "linkedin": "https://www.linkedin.com/in/shearestoh" },
     "sam-cooper": { "name": "Sam Cooper", "role": "Professor in AI for Materials Design", "bio": "Sam leads the Tools for Learning, Design and Research (TLDR) group in the Dyson School of Design Engineering. He is also co-founder and Chief Scientist of Polaron.", "affiliation": "Imperial College London", "photo": "images/people/sam-cooper.jpg", "linkedin": "https://www.linkedin.com/in/sam-cooper-88687238", "logo": "images/logos/imperial.svg" },
-    "davide-tisi": { "name": "Dr Davide Tisi", "role": "Postdoctoral Researcher", "bio": "Davide is a postdoc in the Autonomous Materials Discovery group at DTU Energy. He uses machine-learning potentials to study materials for energy storage.", "affiliation": "Technical University of Denmark", "logo": "images/logos/dtu.svg", "photo": "images/people/davide-tisi.jpg", "linkedin": "https://www.linkedin.com/in/davide-tisi-a12561110/", "speaker": true }
+    "davide-tisi": { "name": "Dr Davide Tisi", "role": "Postdoctoral Researcher", "bio": "Davide is a postdoc in the Autonomous Materials Discovery group at DTU Energy. He uses machine-learning potentials to study materials for energy storage.", "affiliation": "Technical University of Denmark", "logo": "images/logos/dtu.svg", "photo": "images/people/davide-tisi.jpg", "linkedin": "https://www.linkedin.com/in/davide-tisi-a12561110/" }
   },
 
   "organizers": ["sheares-toh", "sam-cooper"],
@@ -26,7 +26,8 @@
     "items": [
       { "type": "break", "title": "Registration", "minutes": 30, "description": "Pick up your badge and mingle around. Light refreshments will be served." },
       { "type": "session", "title": "Welcome & Opening Remarks", "minutes": 10 },
-      { "type": "block", "title": "Morning talks", "minutes": 120, "description": "Speakers to be announced soon." },
+      { "type": "block", "title": "Morning talks", "minutes": 80, "description": "Speakers to be announced soon." },
+      { "type": "talk", "title": "Available soon", "speakers": ["davide-tisi"], "minutes": 40 },
       { "type": "break", "title": "Lunch", "minutes": 60 },
       { "type": "talk", "title": "MAESTRO: Orchestrating the Self-Driving Lab", "speakers": ["sheares-toh"], "minutes": 20 },
       { "type": "block", "title": "Afternoon talks", "minutes": 80, "description": "Speakers to be announced soon." },
