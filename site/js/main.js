@@ -162,13 +162,16 @@ const logoList = (orgs) =>
 // Size logos by aspect ratio so wide wordmarks and compact marks look equally weighted
 // (height ∝ ratio^-0.6, slightly stronger than equal area). Per-logo "scale" fine-tunes.
 function balanceLogos() {
-  document.querySelectorAll(".logos img").forEach((img) => {
-    const fit = () => {
-      const ratio = img.naturalWidth / img.naturalHeight;
-      img.style.height = `${Math.round(95 * Math.pow(ratio, -0.6) * img.dataset.scale)}px`;
-    };
-    img.complete && img.naturalWidth ? fit() : img.addEventListener("load", fit, { once: true });
-  });
+  const whenLoaded = (img, fit) => (img.complete && img.naturalWidth ? fit() : img.addEventListener("load", fit, { once: true }));
+  document.querySelectorAll(".logos img").forEach((img) => whenLoaded(img, () => {
+    const ratio = img.naturalWidth / img.naturalHeight;
+    img.style.height = `${Math.round(95 * Math.pow(ratio, -0.6) * img.dataset.scale)}px`;
+  }));
+  // Institution logos on people cards: equal area (≈ the Imperial wordmark at 13px tall), capped for tall marks.
+  document.querySelectorAll(".org-logo").forEach((img) => whenLoaded(img, () => {
+    const ratio = img.naturalWidth / img.naturalHeight;
+    img.style.height = `${Math.min(34, Math.round(Math.sqrt(1550 / ratio)))}px`;
+  }));
 }
 
 function render(data) {
@@ -204,9 +207,12 @@ function render(data) {
     }));
   }
 
-  // Speakers are everyone listed on a talk, in agenda order; unfilled talks show as "To be announced".
+  // Speakers: everyone on a talk (agenda order), then confirmed speakers without a slot yet ("speaker": true).
   const talks = agenda.items.filter((i) => i.type === "talk");
-  const speakerIds = [...new Set(talks.flatMap((t) => t.speakers || []))];
+  const speakerIds = [...new Set([
+    ...talks.flatMap((t) => t.speakers || []),
+    ...Object.keys(people).filter((id) => people[id]?.speaker),
+  ])];
   // Confirmed speakers only, plus one "more to come" card while unconfirmed talk blocks remain.
   const moreToCome = agenda.items.some((i) => i.type === "block" || (i.type === "talk" && !(i.speakers || []).length));
   $("speakers-list").innerHTML =
