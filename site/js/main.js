@@ -233,6 +233,11 @@ function render(data) {
   $("map-link").href = `https://www.google.com/maps/search/?api=1&query=${query}`;
 }
 
+// FAQ: an open answer closes when the visitor clicks anywhere outside it.
+document.addEventListener("click", (e) => {
+  document.querySelectorAll("#faq-list details[open]").forEach((d) => { if (!d.contains(e.target)) d.open = false; });
+});
+
 // Mobile menu
 const menuBtn = document.getElementById("menu-btn");
 const nav = document.getElementById("nav");
