@@ -172,10 +172,8 @@ section:last-of-type { border-bottom: 0; }
 .slot { display: grid; gap: .35rem 1.5rem; padding: 1.25rem; border-top: 1px solid var(--border); }
 .slot:first-child { border-top: 0; }
 .slot time { font-variant-numeric: tabular-nums; font-weight: 700; color: var(--accent-ink); font-size: .95rem; white-space: nowrap; }
-.slot h3 { margin: 0; font-size: 1.1rem; }
-.slot-session h3, .slot-block h3 { font-weight: 500; }
+.slot h3 { margin: 0; font-size: 1.1rem; font-weight: 700; }  /* every agenda title bold; descriptions stay regular */
 .slot-break { background: var(--panel); padding-block: .85rem; }
-.slot-break h3 { font-weight: 500; }
 .slot-block .abstract { font-style: italic; color: var(--muted); }  /* talk block whose speakers are not yet confirmed */
 .slot.tba h3 { color: var(--muted); font-weight: 600; font-style: italic; }
 .abstract { margin: .5rem 0 0; color: #4b5563; font-size: .95rem; max-width: 75ch; }
