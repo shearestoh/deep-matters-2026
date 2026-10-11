@@ -18,6 +18,8 @@ concurrency:
 
 jobs:
   deploy:
+    # The repo is pushed to both shearestoh/ and tldr-group/; only the tldr-group copy publishes the site.
+    if: github.repository == 'tldr-group/deep-matters-2026'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

@@ -66,12 +66,19 @@ python3 tools/make_images.py                         # all steps, or: photos | g
 
 ## Deploying
 
-Every push to `main` deploys `site/` through `.github/workflows/pages.yml`. One-time setup: repo
-**Settings → Pages → Source: GitHub Actions**.
+Live site: **https://tldr-group.github.io/deep-matters-2026/**
 
-### Moving to tldr-group
+The repo exists in two places, and `git push` updates both:
 
-1. Transfer the repo (**Settings → Transfer ownership**), or push it to a new `tldr-group/deep-matters-2026` repo.
-2. Ask an org admin to enable Pages (Source: GitHub Actions).
-3. In `site/index.html`, change the two absolute URLs in the link-preview tags (`og:url`, `og:image`) to
-   `https://tldr-group.github.io/deep-matters-2026/`. Everything else uses relative paths.
+- `tldr-group/deep-matters-2026`: **publishes the site** (Settings → Pages → Source: GitHub Actions).
+- `shearestoh/deep-matters-2026`: a mirror. Its deploy job is skipped by the `if:` in `.github/workflows/pages.yml`.
+
+To set up pushing to both on a new machine:
+
+```bash
+git remote set-url --add --push origin git@github.com:shearestoh/deep-matters-2026.git
+git remote set-url --add --push origin git@github.com:tldr-group/deep-matters-2026.git
+```
+
+The link-preview tags in `site/index.html` (`og:url`, `og:image`) use the absolute tldr-group URL. Update them
+if the site ever moves. Everything else uses relative paths.
