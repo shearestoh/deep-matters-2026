@@ -81,7 +81,8 @@ function renderAgenda({ start, talkMinutes, items }, people) {
       <div>
         <h3>${esc(item.title || "To be announced soon")}</h3>
         <div class="speaker-chips">${chips}</div>
-        ${item.abstract ? `<p class="abstract">${richText(item.abstract)}</p>` : ""}
+        ${item.abstract ? `<button type="button" class="abstract-toggle" aria-expanded="false">Abstract <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="abstract-wrap"><div><p class="abstract">${richText(item.abstract)}</p></div></div>` : ""}
       </div>
     </li>`;
   }).join("");
@@ -122,6 +123,12 @@ function linkAgendaToSpeakers() {
   const agenda = document.getElementById("agenda-list");
   agenda.addEventListener("click", (e) => {
     if (e.target.closest(".abstract a")) return; // reference links in abstracts open normally
+    const toggle = e.target.closest(".abstract-toggle");
+    if (toggle) { // show/hide the abstract (the only way to open it on touch screens)
+      const open = toggle.closest(".slot").classList.toggle("expanded");
+      toggle.setAttribute("aria-expanded", String(open));
+      return;
+    }
     const chip = e.target.closest("a.chip");
     const row = e.target.closest(".slot-link");
     if (!chip && !row) return;
