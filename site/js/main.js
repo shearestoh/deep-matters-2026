@@ -3,6 +3,10 @@
 const esc = (s = "") =>
   String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
 
+// Escaped text with [label](https://…) turned into links (used for references in abstracts).
+const richText = (s = "") =>
+  esc(s).replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+
 const ICONS = {
   linkedin: '<svg viewBox="0 0 24 24" aria-hidden="true"><path class="fill" d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4v11H3v-11zm6.5 0h3.8v1.5h.06c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.77 2.65 4.77 6.1v5.45h-4v-4.83c0-1.15-.02-2.63-1.6-2.63-1.6 0-1.85 1.25-1.85 2.55v4.91h-3.95v-11z"/></svg>',
   website: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>',
@@ -77,7 +81,7 @@ function renderAgenda({ start, talkMinutes, items }, people) {
       <div>
         <h3>${esc(item.title || "To be announced soon")}</h3>
         <div class="speaker-chips">${chips}</div>
-        ${item.abstract ? `<p class="abstract">${esc(item.abstract)}</p>` : ""}
+        ${item.abstract ? `<p class="abstract">${richText(item.abstract)}</p>` : ""}
       </div>
     </li>`;
   }).join("");
@@ -117,6 +121,7 @@ function openSpeaker(id) {
 function linkAgendaToSpeakers() {
   const agenda = document.getElementById("agenda-list");
   agenda.addEventListener("click", (e) => {
+    if (e.target.closest(".abstract a")) return; // reference links in abstracts open normally
     const chip = e.target.closest("a.chip");
     const row = e.target.closest(".slot-link");
     if (!chip && !row) return;
