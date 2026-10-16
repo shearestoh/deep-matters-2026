@@ -176,19 +176,12 @@ section:last-of-type { border-bottom: 0; }
 .slot-break { background: var(--panel); padding-block: .85rem; }
 .slot-block .abstract { font-style: italic; color: var(--muted); }  /* talk block whose speakers are not yet confirmed */
 .slot.tba h3 { color: var(--muted); font-weight: 600; font-style: italic; }
-/* Talk abstracts: collapsed under an "Abstract" label; expand on row hover (mouse) or when the label is tapped */
-.abstract-toggle {
-  display: inline-flex; align-items: center; gap: .25rem; margin-top: .6rem; padding: 0;
-  border: 0; background: none; cursor: pointer; font: inherit; font-size: .9rem; font-weight: 600; color: var(--accent-ink);
-}
-.abstract-toggle svg { width: 16px; height: 16px; transition: transform .2s ease; }
+/* Talk abstracts: hidden until the row is hovered (mouse) or tapped (touch screens) */
 .abstract-wrap { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .3s ease; }
 .abstract-wrap > div { min-height: 0; overflow: hidden; }
 .slot.expanded .abstract-wrap { grid-template-rows: 1fr; }
-.slot.expanded .abstract-toggle svg { transform: rotate(180deg); }
 @media (hover: hover) {
   .slot:hover .abstract-wrap { grid-template-rows: 1fr; }
-  .slot:hover .abstract-toggle svg { transform: rotate(180deg); }
 }
 .abstract { margin: .5rem 0 0; color: #4b5563; font-size: .95rem; max-width: 75ch; }
 
