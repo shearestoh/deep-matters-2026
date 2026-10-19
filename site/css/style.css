@@ -130,7 +130,7 @@ section:last-of-type { border-bottom: 0; }
 @media (max-width: 719px) { .person-back { padding: .7rem .75rem; gap: .5rem; } .person .person-back p { font-size: .82rem; line-height: 1.4; } }
 .person.has-back:hover, .person.has-back:focus-within { transform: translateY(-3px); box-shadow: 0 12px 26px rgba(0, 0, 0, .1); z-index: 5; }
 .person-back { box-shadow: 0 12px 26px rgba(0, 0, 0, .1); }
-.person.has-back:hover .person-back, .person.has-back:focus-within .person-back { opacity: 1; visibility: visible; }
+.person.has-back:hover .person-back, .person.has-back:focus-within .person-back, .person.open .person-back { opacity: 1; visibility: visible; }
 .person p { margin: 0; color: var(--muted); font-size: .92rem; line-height: 1.4; }
 .person .role { color: var(--fg); }
 .person.tba { background: transparent; border-style: dashed; }
@@ -198,6 +198,10 @@ a.chip:hover strong { color: var(--accent-ink); text-decoration: underline; }
 .person.flash { animation: flash 1s ease; }
 .person.quiet:hover .person-back { opacity: 0; visibility: hidden; }  /* just scrolled into view: see openSpeaker() */
 .person.quiet:hover { transform: none; box-shadow: none; }
+/* agenda row reached from a speaker card */
+@keyframes rowflash { 0%, 100% { background-color: transparent; } 20%, 60% { background-color: rgba(250, 178, 43, .22); } }
+.slot.flash { animation: rowflash 1s ease; }
+.slot.quiet:hover .abstract-wrap { grid-template-rows: 0fr; }
 .chip .avatar { --size: 44px; border-width: 2px; }
 .chip .avatar.ghost { border-width: 2px; }
 .chip strong { display: block; font-size: .95rem; line-height: 1.3; }

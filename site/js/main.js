@@ -75,7 +75,7 @@ function renderAgenda({ start, talkMinutes, items }, people) {
     const chips = ids.length
       ? ids.map((id) => `<a class="chip" href="#speaker-${esc(id)}">${avatar(people[id])}<div><strong>${esc(people[id].name)}</strong><span>${esc(people[id].affiliation)}</span></div></a>`).join("")
       : `<div class="chip">${avatar()}<div><span>Speaker to be announced</span></div></div>`;
-    const link = ids.length ? ` data-speaker="${esc(ids[0])}"` : "";
+    const link = ids.length ? ` data-speaker="${esc(ids[0])}" data-speakers="${esc(ids.join(" "))}"` : "";
     return `<li class="slot${item.title ? "" : " tba"}${ids.length ? " slot-link" : ""}"${link}>
       <time>${time}</time>
       <div>
@@ -98,24 +98,50 @@ function renderGallery(gallery) {
   track.style.setProperty("--duration", `${gallery.photos.length * 6}s`);
 }
 
-// Clicking a talk row (or a speaker in it) scrolls to that speaker's card and briefly highlights it.
-// The card stays on its front (photo, name, affiliation); the bio still appears on hover/tap.
-function openSpeaker(id) {
-  const card = document.getElementById(`speaker-${id}`);
-  if (!card) return;
-  card.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "center" });
-  card.classList.remove("flash");
-  void card.offsetWidth; // restart the highlight animation
-  card.classList.add("flash");
-  // The scroll can leave the pointer resting over the card, which would trigger the hover bio.
-  // Ignore hover until the visitor actually moves the mouse (after the scroll has finished).
-  card.classList.add("quiet");
+// Scroll an element to the middle of the screen and briefly highlight it. The scroll can leave the pointer
+// resting over it, which would trigger its hover effect (bio / abstract), so hover is ignored ("quiet")
+// until the visitor actually moves the mouse after the scroll has finished.
+function jumpTo(el) {
+  el.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "center" });
+  el.classList.remove("flash");
+  void el.offsetWidth; // restart the highlight animation
+  el.classList.add("flash");
+  el.classList.add("quiet");
   const wake = (e) => {
     if (!e.movementX && !e.movementY) return;
-    card.classList.remove("quiet");
+    el.classList.remove("quiet");
     window.removeEventListener("pointermove", wake);
   };
   setTimeout(() => window.addEventListener("pointermove", wake), 800);
+}
+
+// Agenda row → that speaker's card (card stays on its front; the bio still appears on hover/tap).
+function openSpeaker(id) {
+  const card = document.getElementById(`speaker-${id}`);
+  if (card) jumpTo(card);
+}
+
+// Speaker card → that speaker's talk in the agenda. Touch screens can't hover, so there the first tap
+// shows the bio and a second tap goes to the talk. Profile links in the bio open normally.
+const isTouch = () => matchMedia("(hover: none)").matches;
+function linkSpeakersToAgenda() {
+  document.getElementById("speakers-list").addEventListener("click", (e) => {
+    const card = e.target.closest('.person[id^="speaker-"]');
+    if (!card || e.target.closest("a")) return;
+    const row = document.querySelector(`#agenda-list [data-speakers~="${CSS.escape(card.id.slice(8))}"]`);
+    if (!row) return;
+    if (isTouch() && card.querySelector(".person-back") && !card.classList.contains("open")) {
+      document.querySelectorAll(".person.open").forEach((c) => c.classList.remove("open"));
+      card.classList.add("open");
+      return;
+    }
+    card.classList.remove("open");
+    card.blur();
+    jumpTo(row);
+  });
+  document.addEventListener("click", (e) => {
+    document.querySelectorAll(".person.open").forEach((c) => { if (!c.contains(e.target)) c.classList.remove("open"); });
+  });
 }
 
 function linkAgendaToSpeakers() {
@@ -231,6 +257,7 @@ function render(data) {
 
   $("agenda-list").innerHTML = renderAgenda(agenda, people);
   linkAgendaToSpeakers();
+  linkSpeakersToAgenda();
   $("organizers-list").innerHTML = data.organizers.map((id) => personCard(people[id])).join("");
   $("partners-list").innerHTML = data.partners.map((g) =>
     `<div><h2 class="eyebrow">${esc(g.label)}</h2><div class="logos">${logoList(g.orgs)}</div></div>`).join("");
