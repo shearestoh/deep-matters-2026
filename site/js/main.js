@@ -81,7 +81,7 @@ function renderAgenda({ start, talkMinutes, items }, people) {
       <div>
         <h3>${esc(item.title || "To be announced soon")}</h3>
         <div class="speaker-chips">${chips}</div>
-        ${item.abstract ? `<div class="abstract-wrap"><div><p class="abstract">${richText(item.abstract)}</p></div></div>` : ""}
+        ${item.abstract ? `<div class="abstract-wrap"><div>${item.abstract.split(/\n\s*\n/).map((para) => `<p class="abstract">${richText(para.trim())}</p>`).join("")}</div></div>` : ""}
       </div>
     </li>`;
   }).join("");
