@@ -50,8 +50,7 @@
     { "label": "Venue", "orgs": [
       { "name": "Institute of Physics", "logo": "images/logos/iop.svg", "url": "https://www.iop.org" }
     ] },
-    { "label": "Sponsors", "orgs": [
-      { "name": "Henry Royce Institute", "logo": "images/logos/royce.png", "scale": 1.2, "url": "https://www.royce.ac.uk" },
+    { "label": "Sponsor", "orgs": [
       { "name": "Polaron", "logo": "images/logos/polaron.png", "url": "https://polaron.ai" }
     ] }
   ],
