@@ -10,7 +10,7 @@
     "contactEmail": "st225@ic.ac.uk"
   },
 
-  "venue": { "name": "Institute of Physics", "address": "37 Caledonian Road, London N1 9BU", "city": "London King's Cross", "directions": "5 mins walk from King's Cross St Pancras" },
+  "venue": { "name": "Institute of Physics", "address": "37 Caledonian Road, London N1 9BU", "city": "King's Cross", "directions": "5 mins walk from King's Cross St Pancras" },
 
   "people": {
     "sheares-toh": { "name": "Sheares Toh", "role": "PhD Student", "bio": "Sheares builds AI agents for scientific discovery and optimisation in self-driving labs. He is also an avid chess player and a watch aficionado.", "affiliation": "Imperial College London", "logo": "images/logos/imperial.svg", "photo": "images/people/sheares-toh.jpg", "linkedin": "https://www.linkedin.com/in/shearestoh" },
