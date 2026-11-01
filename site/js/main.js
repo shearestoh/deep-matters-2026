@@ -35,7 +35,6 @@ const profileLinks = (p) => {
 // Hover/tap (or keyboard focus) reveals the short bio with LinkedIn/website buttons.
 // domId is set for speaker cards so agenda rows can link to them.
 function personCard(p, domId) {
-  if (!p) return `<article class="person tba">${avatar()}<h3>More speakers to be announced soon</h3></article>`;
   const links = profileLinks(p);
   const back = p.bio || links ? `<div class="person-back">${p.bio ? `<p>${esc(p.bio)}</p>` : ""}${links}</div>` : "";
   const org = p.logo
@@ -250,10 +249,7 @@ function render(data) {
     ...talks.flatMap((t) => t.speakers || []),
     ...Object.keys(people).filter((id) => people[id]?.speaker),
   ])];
-  // Confirmed speakers only, plus one "more to come" card while unconfirmed talk blocks remain.
-  const moreToCome = agenda.items.some((i) => i.type === "block" || (i.type === "talk" && !(i.speakers || []).length));
-  $("speakers-list").innerHTML =
-    speakerIds.map((id) => personCard(people[id], `speaker-${id}`)).join("") + (moreToCome ? personCard() : "");
+  $("speakers-list").innerHTML = speakerIds.map((id) => personCard(people[id], `speaker-${id}`)).join("");
 
   $("agenda-list").innerHTML = renderAgenda(agenda, people);
   linkAgendaToSpeakers();

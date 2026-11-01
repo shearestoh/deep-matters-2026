@@ -133,8 +133,6 @@ section:last-of-type { border-bottom: 0; }
 .person.has-back:hover .person-back, .person.has-back:focus-within .person-back, .person.open .person-back { opacity: 1; visibility: visible; }
 .person p { margin: 0; color: var(--muted); font-size: .92rem; line-height: 1.4; }
 .person .role { color: var(--fg); }
-.person.tba { background: transparent; border-style: dashed; }
-.person.tba h3 { color: var(--muted); font-weight: 600; }
 
 .avatar {
   --size: 88px;
