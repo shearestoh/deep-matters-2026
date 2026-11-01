@@ -44,15 +44,8 @@
   },
 
   "partners": [
-    { "label": "Host", "orgs": [
-      { "name": "Imperial College London", "logo": "images/logos/imperial.svg", "url": "https://www.imperial.ac.uk" }
-    ] },
-    { "label": "Venue", "orgs": [
-      { "name": "Institute of Physics", "logo": "images/logos/iop.svg", "url": "https://www.iop.org" }
-    ] },
-    { "label": "Sponsor", "orgs": [
-      { "name": "Polaron", "logo": "images/logos/polaron.png", "url": "https://polaron.ai" }
-    ] }
+    { "name": "Imperial College London", "logo": "images/logos/imperial.svg", "url": "https://www.imperial.ac.uk" },
+    { "name": "Polaron", "logo": "images/logos/polaron.png", "url": "https://polaron.ai" }
   ],
 
   "faq": [

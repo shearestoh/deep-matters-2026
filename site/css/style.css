@@ -225,10 +225,10 @@ a.chip:hover strong { color: var(--accent-ink); text-decoration: underline; }
 
 /* Host & sponsors */
 .partners { display: flex; flex-wrap: wrap; justify-content: center; gap: 2.5rem 6rem; text-align: center; }
-.eyebrow { font-size: .85rem; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; color: var(--muted); }
 .logos { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 1.5rem 3rem; min-height: 80px; }
 .logos img { height: 44px; width: auto; }  /* final height set by balanceLogos() */
 .logos a:hover img { opacity: .8; }
+.partners .logos { gap: 2.5rem 6rem; }
 
 /* FAQ */
 .faq { display: grid; gap: 2rem; }

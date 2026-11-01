@@ -255,8 +255,7 @@ function render(data) {
   linkAgendaToSpeakers();
   linkSpeakersToAgenda();
   $("organizers-list").innerHTML = data.organizers.map((id) => personCard(people[id])).join("");
-  $("partners-list").innerHTML = data.partners.map((g) =>
-    `<div><h2 class="eyebrow">${esc(g.label)}</h2><div class="logos">${logoList(g.orgs)}</div></div>`).join("");
+  $("partners-list").innerHTML = `<div class="logos">${logoList(data.partners)}</div>`;
   balanceLogos();
   renderGallery(data.gallery);
   $("faq-list").innerHTML = data.faq.map((f) => `<details><summary>${esc(f.q)}</summary><p>${esc(f.a)}</p></details>`).join("");
