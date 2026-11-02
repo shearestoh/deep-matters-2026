@@ -40,7 +40,7 @@
       { "type": "talk", "title": "Talking to Your Microstructure: AI Agents for Materials Analysis", "speakers": ["lei-ge"], "minutes": 40 },
       { "type": "block", "title": "Afternoon talks", "minutes": 50, "description": "More speakers to be announced soon." },
       { "type": "session", "title": "Closing Remarks", "minutes": 10},
-      { "type": "break", "title": "Networking", "minutes": 40, "description": "Join us for a short after-party with fellow attendees and speakers. Drinks will be served." },
+      { "type": "break", "title": "Networking", "minutes": 40, "description": "Join us for a short after-party with fellow attendees and speakers." },
       { "type": "session", "title": "Close" }
     ]
   },
