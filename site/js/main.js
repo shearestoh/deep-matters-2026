@@ -64,6 +64,13 @@ function renderAgenda({ start, talkMinutes, items }, people) {
     const time = end ? `${clock} – ${end}` : clock;  // no duration = a single point in time
     clock = end || clock;
 
+    // Session chair: a compact row at the start of a session, with no time of its own
+    if (item.type === "chair") {
+      const chairs = (item.speakers || []).filter((id) => people[id]).map((id) =>
+        `<div class="chip">${avatar(people[id])}<div><strong>${esc(people[id].name)}</strong><span>${esc(people[id].affiliation)}</span></div></div>`).join("");
+      return `<li class="slot slot-chair"><span class="slot-label">${esc(item.title || "Session chair")}</span><div class="speaker-chips">${chairs}</div></li>`;
+    }
+
     if (item.type !== "talk") {
       const cls = { break: "slot slot-break", block: "slot slot-block" }[item.type] || "slot slot-session";
       const desc = item.description ? `<p class="abstract">${esc(item.description)}</p>` : "";
