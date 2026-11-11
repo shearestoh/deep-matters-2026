@@ -67,7 +67,10 @@ function renderAgenda({ start, talkMinutes, items }, people) {
     if (item.type !== "talk") {
       const cls = { break: "slot slot-break", block: "slot slot-block" }[item.type] || "slot slot-session";
       const desc = item.description ? `<p class="abstract">${esc(item.description)}</p>` : "";
-      return `<li class="${cls}"><time>${time}</time><div><h3>${esc(item.title)}</h3>${desc}</div></li>`;
+      // Hosts of a session (e.g. opening remarks): shown like speaker chips, but not linked to a speaker card
+      const hosts = (item.speakers || []).filter((id) => people[id]).map((id) =>
+        `<div class="chip">${avatar(people[id])}<div><strong>${esc(people[id].name)}</strong><span>${esc(people[id].affiliation)}</span></div></div>`).join("");
+      return `<li class="${cls}"><time>${time}</time><div><h3>${esc(item.title)}</h3>${hosts ? `<div class="speaker-chips">${hosts}</div>` : ""}${desc}</div></li>`;
     }
 
     const ids = (item.speakers || []).filter((id) => people[id]);
