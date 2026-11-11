@@ -14,7 +14,7 @@ const ICONS = {
 };
 
 const initials = (name) => {
-  const words = name.replace(/^(dr|prof)\.?\s+/i, "").split(/\s+/);
+  const words = name.replace(/^(dr|prof|professor)\.?\s+/i, "").split(/\s+/);
   return (words[0][0] + (words.length > 1 ? words[words.length - 1][0] : "")).toUpperCase();
 };
 
