@@ -24,6 +24,7 @@
   },
 
   "organizers": ["sheares-toh", "sam-cooper"],
+  "chairs": ["austin-mroz"],
 
   "agenda": {
     "start": "10:00",
@@ -31,7 +32,6 @@
     "items": [
       { "type": "break", "title": "Registration", "minutes": 30, "description": "Pick up your badge and mingle around. Light refreshments will be served." },
       { "type": "session", "title": "Welcome & Opening Remarks", "speakers": ["sam-cooper"], "minutes": 10 },
-      { "type": "chair", "title": "Session chair", "speakers": ["austin-mroz"] },
       { "type": "talk", "title": "AI for Materials Science: From Autonomous Materials Optimisation to the Generation of Novel Ideas", "speakers": ["pascal-friederich"], "minutes": 40, "abstract": "AI and machine learning methods are playing an increasingly important role in materials science and chemistry. They can accelerate the screening, design, and discovery of new molecules and materials in multiple ways, e.g. by virtually predicting properties of molecules and materials, by extracting hidden relations from large amounts of simulated or experimental data, or even by interfacing machine learning algorithms for autonomous decision-making directly with automated experiments. In this talk, I will focus on our research activities on automated data analysis and autonomous decision-making in self-driving labs ([Wu et al., Science, 2024](https://www.science.org/doi/abs/10.1126/science.ads0901)), as well as our work on predicting new research directions in materials science using large language models and concept graphs ([Marwitz et al., Nature Machine Intelligence, 2026](https://doi.org/10.1038/s42256-026-01206-y))." },
       { "type": "talk", "title": "From Bayesian Optimisation to AI Agents: Lessons from a Robotic Chemistry Lab", "speakers": ["abdoulatif-cisse"], "minutes": 40, "abstract": "Bayesian optimisation can guide searches through complex experimental spaces, while large language models contribute scientific context and generate hypotheses. This talk traces the progression from BORA, a hybrid Bayesian optimisation framework, to LLM agents guiding experiments in a closed-loop robotic chemistry laboratory. In a noisy, 25-variable photocatalytic hydrogen-production study, an agent's recommendations were benchmarked against human domain experts. The comparison highlights a trade-off: experts found a more active catalyst formulation, while the agent reasoned much faster and at far lower cost." },
       { "type": "break", "title": "Lunch", "minutes": 60},

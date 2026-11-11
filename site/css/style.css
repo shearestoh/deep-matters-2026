@@ -174,10 +174,6 @@ section:last-of-type { border-bottom: 0; }
 .slot h3 { margin: 0; font-size: 1.1rem; font-weight: 700; }  /* every agenda title bold; descriptions stay regular */
 .slot-break { background: var(--panel); padding-block: .85rem; }
 .slot-block .abstract { font-style: italic; color: var(--muted); }  /* talk block whose speakers are not yet confirmed */
-.slot-chair { align-items: center; padding-block: .8rem; }
-.slot-chair .slot-label { font-size: .8rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
-.slot-chair .speaker-chips { margin-top: 0; }
-.slot-chair .chip .avatar { --size: 36px; }
 .slot.tba h3 { color: var(--muted); font-weight: 600; font-style: italic; }
 /* Talk abstracts: hidden until the row is hovered (mouse) or tapped (touch screens) */
 .abstract-wrap { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .3s ease; }
