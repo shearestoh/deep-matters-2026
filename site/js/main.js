@@ -56,18 +56,12 @@ const addMinutes = (hhmm, mins) => {
   return `${String(Math.floor(t / 60)).padStart(2, "0")}:${String(t % 60).padStart(2, "0")}`;
 };
 
-// "13:30" -> "1:30pm"
-const ampm = (hhmm) => {
-  const [h, m] = hhmm.split(":").map(Number);
-  return `${(h + 11) % 12 + 1}:${String(m).padStart(2, "0")}${h < 12 ? "am" : "pm"}`;
-};
-
 function renderAgenda({ start, talkMinutes, items }, people) {
   let clock = start;
   return items.map((item) => {
     const minutes = item.minutes ?? (item.type === "talk" ? talkMinutes : 0);
     const end = minutes ? addMinutes(clock, minutes) : null;
-    const time = end ? `${ampm(clock)} – ${ampm(end)}` : ampm(clock);  // no duration = a single point in time
+    const time = end ? `${clock} – ${end}` : clock;  // no duration = a single point in time
     clock = end || clock;
 
     if (item.type !== "talk") {
