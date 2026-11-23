@@ -56,20 +56,26 @@ const addMinutes = (hhmm, mins) => {
   return `${String(Math.floor(t / 60)).padStart(2, "0")}:${String(t % 60).padStart(2, "0")}`;
 };
 
+// "13:30" -> "1:30pm"
+const ampm = (hhmm) => {
+  const [h, m] = hhmm.split(":").map(Number);
+  return `${(h + 11) % 12 + 1}:${String(m).padStart(2, "0")}${h < 12 ? "am" : "pm"}`;
+};
+
 function renderAgenda({ start, talkMinutes, items }, people) {
   let clock = start;
   return items.map((item) => {
     const minutes = item.minutes ?? (item.type === "talk" ? talkMinutes : 0);
     const end = minutes ? addMinutes(clock, minutes) : null;
-    const time = end ? `${clock} – ${end}` : clock;  // no duration = a single point in time
+    const time = end ? `${ampm(clock)} – ${ampm(end)}` : ampm(clock);  // no duration = a single point in time
     clock = end || clock;
 
     if (item.type !== "talk") {
       const cls = { break: "slot slot-break", block: "slot slot-block" }[item.type] || "slot slot-session";
       const desc = item.description ? `<p class="abstract">${esc(item.description)}</p>` : "";
-      // Hosts of a session (e.g. opening remarks): shown like speaker chips, but not linked to a speaker card
+      // Hosts of a session (e.g. welcome address): name and organisation only, no photo or link to a speaker card
       const hosts = (item.speakers || []).filter((id) => people[id]).map((id) =>
-        `<div class="chip">${avatar(people[id])}<div><strong>${esc(people[id].name)}</strong><span>${esc(people[id].affiliation)}</span></div></div>`).join("");
+        `<div class="chip chip-text"><div><strong>${esc(people[id].name)}</strong><span>${esc(people[id].affiliation)}</span></div></div>`).join("");
       return `<li class="${cls}"><time>${time}</time><div><h3>${esc(item.title)}</h3>${hosts ? `<div class="speaker-chips">${hosts}</div>` : ""}${desc}</div></li>`;
     }
 
