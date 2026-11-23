@@ -22,7 +22,7 @@
     "lei-ge": { "name": "Dr Lei Ge", "role": "Machine Learning Engineer", "bio": "Lei Ge is a Postdoctoral Research Associate at Imperial College London and an ML Engineer at Polaron. Her research explores how large language models reason, represent knowledge, and support scientific discovery, while her work at Polaron focuses on building AI agents for materials analysis.", "affiliation": "Polaron", "logo": "images/logos/polaron.png", "photo": "images/people/lei-ge.jpg?v=4", "linkedin": "https://www.linkedin.com/in/ge-lei/" },
     "dominik-lukes": { "name": "Dr Dominik Lukes", "role": "AI Consultant for Research and Strategy", "affiliation": "University of Oxford", "logo": "images/logos/oxford.svg", "photo": "images/people/dominik-lukes.jpg", "linkedin": "https://www.linkedin.com/in/dominiklukes/" },
     "austin-mroz": { "name": "Dr Austin Mroz", "role": "Member of Technical Staff", "affiliation": "CuspAI", "logo": "images/logos/cuspai.svg", "photo": "images/people/austin-mroz.jpg", "linkedin": "https://www.linkedin.com/in/austin-mroz/" },
-    "camille-petit": { "name": "Professor Camille Petit", "role": "Professor in Materials Engineering", "affiliation": "Imperial College London", "logo": "images/logos/imperial.svg", "photo": "images/people/camille-petit.jpg", "linkedin": "https://www.linkedin.com/in/camille-petit-86925654/" }
+    "camille-petit": { "name": "Professor Camille Petit", "role": "Professor in Materials Engineering", "affiliation": "Imperial College London", "logo": "images/logos/imperial.svg", "photo": "images/people/camille-petit.jpg?v=2", "linkedin": "https://www.linkedin.com/in/camille-petit-86925654/" }
   },
 
   "organizers": ["sheares-toh", "sam-cooper"],
