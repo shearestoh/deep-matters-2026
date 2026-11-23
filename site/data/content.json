@@ -43,7 +43,7 @@
       { "type": "talk", "title": "HELLMM: An Agentic Workflow for Exploring Electrocatalytic Reaction Mechanisms", "speakers": ["davide-tisi"], "minutes": 40, "abstract": "Machine-learning potentials are making atomistic simulations faster, but deciding which reaction mechanisms to calculate remains largely a human task. Can scientific AI agents, with their reasoning, substitute human intuition? If so, how?\n\nI will present HELLMM—Heterogeneous Electrocatalysis with LLM-driven Mechanism Elucidation—an agent-based workflow that combines LLM reasoning with atomistic simulations. Its agentic workflow delegates decisions to the LLM: selecting relevant transformation rules, proposing a search depth, enumerating candidate surface intermediates, and assessing their chemical validity. These choices define the reactions explored by atomistic simulations.\n\nApplications to hydrogen evolution, oxygen, and CO₂ reduction illustrate both the opportunities and limitations of this approach." },
       { "type": "talk", "title": "Talking to Your Microstructure: AI Agents for Materials Analysis", "speakers": ["lei-ge"], "minutes": 40 },
       { "type": "session", "title": "Closing Remarks", "speakers": ["sam-cooper"], "minutes": 10 },
-      { "type": "break", "title": "Networking", "minutes": 40, "description": "Join us for a short after-party with fellow attendees and speakers." },
+      { "type": "break", "title": "Networking", "minutes": 40, "description": "Join us for a short after-party." },
       { "type": "session", "title": "Close" }
     ]
   },
