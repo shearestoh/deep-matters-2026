@@ -89,15 +89,23 @@ function renderAgenda({ start, talkMinutes, items }, people) {
   }).join("");
 }
 
-// Infinite marquee: the photo set is rendered twice and the track slides by exactly one set width.
-function renderGallery(gallery) {
+// Photo galleries (newest first), each an infinite marquee: the photo set is rendered twice and the track
+// slides by exactly one set width.
+function renderGalleries(galleries) {
   const section = document.getElementById("gallery");
-  if (!gallery?.photos?.length) { section.hidden = true; return; }
-  const imgs = (hidden) => gallery.photos.map((ph) =>
+  const list = (galleries || []).filter((g) => g.photos?.length);
+  if (!list.length) { section.hidden = true; return; }
+  const imgs = (g, hidden) => g.photos.map((ph) =>
     `<img src="${esc(ph.src)}" alt="${hidden ? "" : esc(ph.alt)}" loading="lazy" width="960" height="640" />`).join("");
-  const track = document.getElementById("gallery-track");
-  track.innerHTML = `<div class="marquee-set">${imgs(false)}</div><div class="marquee-set" aria-hidden="true">${imgs(true)}</div>`;
-  track.style.setProperty("--duration", `${gallery.photos.length * 6}s`);
+  document.getElementById("galleries").innerHTML = list.map((g) => `
+    <div class="gallery-block">
+      <h2>${esc(g.title)}</h2>
+      <div class="marquee">
+        <div class="marquee-track" style="--duration: ${g.photos.length * 6}s">
+          <div class="marquee-set">${imgs(g, false)}</div><div class="marquee-set" aria-hidden="true">${imgs(g, true)}</div>
+        </div>
+      </div>
+    </div>`).join("");
 }
 
 // Scroll an element to the middle of the screen and briefly highlight it. The scroll can leave the pointer
@@ -222,7 +230,7 @@ function render(data) {
     title: `${event.title}:`, theme: event.theme, date: dateText,
     place: `${venue.name} · ${venue.city}`, about: event.about,
     venueName: venue.name, address: venue.address, directions: venue.directions,
-    registerNote: event.registerNote, galleryTitle: data.gallery?.title,
+    registerNote: event.registerNote,
   };
   document.querySelectorAll("[data-field]").forEach((el) => { el.textContent = fields[el.dataset.field] ?? ""; });
 
@@ -263,7 +271,7 @@ function render(data) {
   $("chairs-list").innerHTML = chairs.map((id) => personCard(people[id])).join("");
   $("partners-list").innerHTML = `<div class="logos">${logoList(data.partners)}</div>`;
   balanceLogos();
-  renderGallery(data.gallery);
+  renderGalleries(data.galleries);
   $("faq-list").innerHTML = data.faq.map((f) => `<details><summary>${esc(f.q)}</summary><p>${esc(f.a)}</p></details>`).join("");
   setupContact(event.contactEmail);
 

@@ -61,19 +61,37 @@
     { "q": "Is the venue accessible?", "a": "If you have any access requirements, please get in touch and we will be happy to help." }
   ],
 
-  "gallery": {
-    "title": "Highlights from Deep Matters 2025",
-    "photos": [
-      { "src": "images/gallery/01-group-photo.jpg", "alt": "Group photo of Deep Matters 2025 attendees" },
-      { "src": "images/gallery/02-talk.jpg", "alt": "Audience watching a talk" },
-      { "src": "images/gallery/03-networking.jpg", "alt": "Attendees chatting during a break" },
-      { "src": "images/gallery/04-pastries.jpg", "alt": "Pastries and fruit at the refreshments table" },
-      { "src": "images/gallery/05-audience.jpg", "alt": "Packed room listening to a speaker" },
-      { "src": "images/gallery/06-discussion.jpg", "alt": "Attendee asking a question from the audience" },
-      { "src": "images/gallery/07-coffee-break.jpg", "alt": "Networking over coffee and pastries" },
-      { "src": "images/gallery/08-lunch.jpg", "alt": "Lunch buffet" },
-      { "src": "images/gallery/09-question.jpg", "alt": "Attendee standing to ask a question" },
-      { "src": "images/gallery/10-refreshments.jpg", "alt": "Fresh orange juice being poured" }
-    ]
-  }
+  "galleries": [
+    {
+      "title": "Highlights from Deep Matters 2026",
+      "photos": [
+        { "src": "images/gallery-2026/01-group-photo.jpg", "alt": "Group photo of Deep Matters 2026 attendees at the Institute of Physics" },
+        { "src": "images/gallery-2026/02-opening.jpg", "alt": "Sheares Toh speaking at the podium" },
+        { "src": "images/gallery-2026/03-pascal-friederich.jpg", "alt": "Pascal Friederich presenting his talk" },
+        { "src": "images/gallery-2026/04-abdoulatif-cisse.jpg", "alt": "Abdoulatif Cissé presenting his talk" },
+        { "src": "images/gallery-2026/05-audience.jpg", "alt": "Audience asking questions, with posters in the background" },
+        { "src": "images/gallery-2026/06-dominik-lukes.jpg", "alt": "Dominik Lukes presenting his talk" },
+        { "src": "images/gallery-2026/07-yue-wu.jpg", "alt": "Yue Wu presenting his talk" },
+        { "src": "images/gallery-2026/08-lunch.jpg", "alt": "Attendees at lunch in the atrium" },
+        { "src": "images/gallery-2026/09-davide-tisi.jpg", "alt": "Davide Tisi presenting his talk" },
+        { "src": "images/gallery-2026/10-lei-ge.jpg", "alt": "Lei Ge presenting her talk" },
+        { "src": "images/gallery-2026/11-pastries.jpg", "alt": "Pastries and fruit at the refreshments table" }
+      ]
+    },
+    {
+      "title": "Highlights from Deep Matters 2025",
+      "photos": [
+        { "src": "images/gallery/01-group-photo.jpg", "alt": "Group photo of Deep Matters 2025 attendees" },
+        { "src": "images/gallery/02-talk.jpg", "alt": "Audience watching a talk" },
+        { "src": "images/gallery/03-networking.jpg", "alt": "Attendees chatting during a break" },
+        { "src": "images/gallery/04-pastries.jpg", "alt": "Pastries and fruit at the refreshments table" },
+        { "src": "images/gallery/05-audience.jpg", "alt": "Packed room listening to a speaker" },
+        { "src": "images/gallery/06-discussion.jpg", "alt": "Attendee asking a question from the audience" },
+        { "src": "images/gallery/07-coffee-break.jpg", "alt": "Networking over coffee and pastries" },
+        { "src": "images/gallery/08-lunch.jpg", "alt": "Lunch buffet" },
+        { "src": "images/gallery/09-question.jpg", "alt": "Attendee standing to ask a question" },
+        { "src": "images/gallery/10-refreshments.jpg", "alt": "Fresh orange juice being poured" }
+      ]
+    }
+  ]
 }
